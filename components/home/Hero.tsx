@@ -12,34 +12,33 @@ const trustIcons = { users: Users, shieldCheck: ShieldCheck, heart: Heart, clock
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden bg-white pt-14 pb-20 lg:pt-20 lg:pb-24">
+    <section id="top" className="relative overflow-hidden bg-white pt-6 pb-10 lg:pt-8 lg:pb-12">
       <Container>
-        <div className="grid gap-16 lg:grid-cols-2 lg:items-center lg:gap-12">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-12">
           <div className="fade-up">
             <span className="inline-flex items-center gap-2 rounded-full border border-teal/25 bg-teal-light px-4 py-1.5 text-sm font-semibold text-teal-dark">
               <Rocket className="h-4 w-4" aria-hidden="true" />
               Pre-Launch — Coming to Your City Soon!
             </span>
 
-            <h1 className="mt-6 text-4xl font-semibold leading-[1.1] tracking-tight text-navy sm:text-5xl lg:text-[60px]">
+            <h1 className="mt-4 text-4xl font-semibold leading-[1.15] tracking-tight text-navy sm:text-5xl lg:text-[42px] xl:text-[48px]">
               Time matters in healthcare.
               <br />
               <span className="text-teal">We bring care on time.</span>
             </h1>
 
-            <p className="mt-6 max-w-xl text-base leading-7 text-text-muted sm:text-lg">
-              Samay Care connects you with a trusted CareBuddy who can assist you at the hospital or
-              accompany you from home &mdash; helping handle the queues, navigation, registration,
-              coordination and other non-clinical hassles of the healthcare journey.
+            <p className="mt-4 max-w-xl text-base leading-7 text-text-muted">
+              Samay Care connects you with a trusted CareBuddy who assists you at the hospital or
+              accompanies you from home &mdash; and handles the hassle.
             </p>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
               {bookingModes.map((mode) => (
                 <BookingModeCard key={mode.id} icon={mode.icon} title={mode.title} description={mode.description} />
               ))}
             </div>
 
-            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <div className="mt-5 flex flex-wrap items-center gap-x-8 gap-y-4">
               <Button
                 href="#prelaunch-form"
                 size="lg"
@@ -63,7 +62,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="fade-up mt-14 flex flex-col divide-y divide-border rounded-2xl border border-border bg-white p-5 shadow-[0_1px_2px_rgba(16,43,58,0.04)] sm:flex-row sm:divide-x sm:divide-y-0 sm:p-6">
+        <div className="fade-up mt-6 flex flex-col divide-y divide-border rounded-2xl border border-border bg-white p-4 shadow-[0_1px_2px_rgba(16,43,58,0.04)] sm:flex-row sm:divide-x sm:divide-y-0 sm:p-5">
           {heroTrustIndicators.map((item) => {
             const Icon = trustIcons[item.icon];
             return (

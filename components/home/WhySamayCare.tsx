@@ -7,11 +7,11 @@ const icons = { clock: Clock, handHeart: HandHeart, badgeCheck: BadgeCheck, hear
 
 export function WhySamayCare() {
   return (
-    <section id="why-samay-care" className="py-20 lg:py-28">
+    <section id="why-samay-care" className="py-10 lg:py-14">
       <Container>
-        <SectionHeading eyebrow="Why Samay Care" title="Why Samay Care?" />
+        <SectionHeading title="Why Samay Care?" />
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {whyReasons.map((reason) => {
             const Icon = icons[reason.icon];
             return (
@@ -26,9 +26,9 @@ export function WhySamayCare() {
           })}
         </div>
 
-        <div id="about-us" className="mt-20 rounded-3xl bg-navy px-8 py-14 text-center sm:px-16">
+        <div id="about-us" className="mt-10 rounded-3xl bg-navy px-8 py-10 text-center sm:px-16">
           <h3 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">Our Story</h3>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-white/75">
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white/75">
             Healthcare is time-sensitive. When someone needs care, every minute matters &mdash; and
             families should not have to spend that time figuring out queues, counters, directions
             and paperwork.

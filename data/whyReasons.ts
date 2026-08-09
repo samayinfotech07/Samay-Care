@@ -7,16 +7,16 @@ export const whyReasons = [
   {
     icon: "handHeart",
     title: "Human Assistance",
-    description: "Technology connects you, but a real CareBuddy is there when physical help is needed.",
+    description: "A real CareBuddy, there when it matters.",
   },
   {
     icon: "badgeCheck",
     title: "Verified & Trained",
-    description: "CareBuddies go through defined onboarding and verification processes.",
+    description: "Onboarded and verified before they assist you.",
   },
   {
     icon: "heartHandshake",
     title: "Non-Clinical, Patient-Focused",
-    description: "We coordinate and assist; doctors and healthcare professionals provide clinical care.",
+    description: "We assist; doctors provide the clinical care.",
   },
 ] as const;

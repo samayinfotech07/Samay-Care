@@ -37,28 +37,24 @@ function requestAssistance(title: string, assistanceType: AssistanceType) {
 
 export function CareBuddyServices() {
   return (
-    <section id="carebuddy-services" className="bg-surface py-20 lg:py-28">
+    <section id="carebuddy-services" className="bg-surface py-10 lg:py-14">
       <Container>
-        <SectionHeading
-          eyebrow="What CareBuddy Handles"
-          title="Your CareBuddy Handles the Hassle."
-          subtitle="Non-clinical coordination, so you can focus on your health. Clinical decisions always remain with qualified healthcare professionals."
-        />
+        <SectionHeading title="Your CareBuddy Handles the Hassle." />
 
-        <div className="mt-14 flex flex-wrap justify-center gap-4">
+        <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
           {careBuddyServices.map((service) => {
             const Icon = icons[service.icon];
             return (
               <button
                 key={service.title}
                 type="button"
-                className="flex w-[135px] flex-col items-center gap-2 rounded-2xl bg-teal-soft p-4 text-center transition-colors hover:bg-teal-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
+                className="flex flex-col items-center gap-2 rounded-2xl bg-teal-soft p-3 text-center transition-colors hover:bg-teal-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
                 onClick={() => requestAssistance(service.title, service.assistanceType)}
               >
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white">
-                  <Icon className="h-5 w-5 text-teal" strokeWidth={2} aria-hidden="true" />
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white">
+                  <Icon className="h-4 w-4 text-teal" strokeWidth={2} aria-hidden="true" />
                 </span>
-                <span className="text-sm font-semibold text-navy">{service.title}</span>
+                <span className="text-[13px] font-semibold leading-tight text-navy">{service.title}</span>
                 <span className="sr-only"> {service.description} Request this assistance.</span>
               </button>
             );

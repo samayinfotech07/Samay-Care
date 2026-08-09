@@ -6,7 +6,7 @@ const icons = { userRound: UserRound, users: Users, briefcase: Briefcase, globe:
 
 export function AudienceSection() {
   return (
-    <section className="py-12 lg:py-16">
+    <section className="py-8 lg:py-10">
       <Container>
         <h2 className="sr-only">Who We&rsquo;re Building For</h2>
         <div className="flex flex-col divide-y divide-border rounded-2xl bg-teal-soft p-6 sm:flex-row sm:divide-x sm:divide-y-0 sm:p-8">

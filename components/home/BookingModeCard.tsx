@@ -13,12 +13,12 @@ export function BookingModeCard({
 }) {
   const Icon = icons[icon];
   return (
-    <div className="rounded-2xl border border-border bg-white p-5">
-      <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-teal-light">
-        <Icon className="h-5 w-5 text-teal" strokeWidth={2} aria-hidden="true" />
+    <div className="rounded-2xl border border-border bg-white p-4">
+      <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-teal-light">
+        <Icon className="h-4 w-4 text-teal" strokeWidth={2} aria-hidden="true" />
       </span>
-      <h2 className="mt-3 text-base font-semibold text-navy">{title}</h2>
-      <p className="mt-1 text-sm leading-6 text-text-muted">{description}</p>
+      <h2 className="mt-2.5 text-[15px] font-semibold leading-snug text-navy">{title}</h2>
+      <p className="mt-1 text-[13px] leading-5 text-text-muted">{description}</p>
     </div>
   );
 }

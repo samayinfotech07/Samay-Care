@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Layers, Link2, Lock, Radio, Zap } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -7,23 +8,22 @@ const icons = { zap: Zap, radio: Radio, layoutGrid: Layers, link: Link2, lock: L
 
 export function TechnologySection() {
   return (
-    <section className="py-20 lg:py-28">
-      <Container className="grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-16">
+    <section className="py-10 lg:py-14">
+      <Container className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
         <div>
           <SectionHeading
             align="left"
-            eyebrow="Technology"
             title="Technology That Enables Better Care"
-            subtitle="Our technology helps us connect customers with CareBuddies faster, keep everyone informed and make every healthcare journey easier to coordinate."
+            subtitle="Faster CareBuddy assignment, real-time updates and secure coordination."
           />
 
-          <ul className="mt-10 grid gap-6 sm:grid-cols-2">
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2">
             {techFeatures.map((feature) => {
               const Icon = icons[feature.icon];
               return (
                 <li key={feature.title} className="flex items-start gap-3">
-                  <span className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-teal-light">
-                    <Icon className="h-5 w-5 text-teal" strokeWidth={2} aria-hidden="true" />
+                  <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-teal-light">
+                    <Icon className="h-4 w-4 text-teal" strokeWidth={2} aria-hidden="true" />
                   </span>
                   <div>
                     <h3 className="text-sm font-semibold text-navy">{feature.title}</h3>
@@ -42,24 +42,25 @@ export function TechnologySection() {
 }
 
 function TechnologyVisual() {
-  const journey = ["Customer", "Samay Care App", "Assignment Engine", "CareBuddy", "Hospital"];
+  const journey = ["Customer", "App", "Assignment", "CareBuddy", "Hospital"];
 
   return (
-    <div
-      className="flex h-full flex-col items-center justify-center rounded-3xl border border-border bg-gradient-to-b from-surface to-white p-8"
-      aria-hidden="true"
-    >
-      <ol className="flex flex-col items-center gap-3">
+    <div>
+      <div className="relative aspect-[1672/941] w-full overflow-hidden rounded-3xl border border-border bg-surface">
+        <Image
+          src="/images/technology-wheelchair.jpg"
+          alt="A CareBuddy assisting a patient in a wheelchair through a hospital corridor with directional signage"
+          fill
+          sizes="(min-width: 1024px) 560px, 100vw"
+          className="object-cover"
+          loading="lazy"
+        />
+      </div>
+      <ol className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs font-medium text-navy" aria-hidden="true">
         {journey.map((step, index) => (
-          <li key={step} className="flex flex-col items-center gap-3">
-            <span className="rounded-full border border-border bg-white px-4 py-2 text-sm font-medium text-navy shadow-sm">
-              {step}
-            </span>
-            {index < journey.length - 1 ? (
-              <span className="text-teal" aria-hidden="true">
-                &darr;
-              </span>
-            ) : null}
+          <li key={step} className="flex items-center gap-2">
+            <span className="rounded-full border border-border bg-white px-3 py-1.5">{step}</span>
+            {index < journey.length - 1 ? <span className="text-teal">&rarr;</span> : null}
           </li>
         ))}
       </ol>

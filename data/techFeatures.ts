@@ -2,26 +2,26 @@ export const techFeatures = [
   {
     icon: "zap",
     title: "Faster Assignment",
-    description: "Help connect customers with available CareBuddies.",
+    description: "Connects you with an available CareBuddy fast.",
   },
   {
     icon: "radio",
     title: "Real-Time Updates",
-    description: "Keep customers informed about CareBuddy status.",
+    description: "Keeps you informed on CareBuddy status.",
   },
   {
     icon: "layoutGrid",
     title: "Digital Journey",
-    description: "Keep requests, visits and service information organized.",
+    description: "Keeps your requests and visits organized.",
   },
   {
     icon: "link",
     title: "Better Coordination",
-    description: "Connect the customer, CareBuddy and future healthcare partners.",
+    description: "Connects you, your CareBuddy and the hospital.",
   },
   {
     icon: "lock",
     title: "Privacy & Security",
-    description: "Customer information is handled securely and only for legitimate service purposes.",
+    description: "Your information is handled securely.",
   },
 ] as const;

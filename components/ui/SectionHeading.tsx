@@ -18,10 +18,15 @@ export function SectionHeading({
       {eyebrow ? (
         <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-teal">{eyebrow}</p>
       ) : null}
-      <h2 id={id} className="text-3xl font-semibold tracking-tight text-navy sm:text-4xl lg:text-[44px]">
+      <h2
+        id={id}
+        className={`text-3xl font-semibold tracking-tight text-navy sm:text-4xl ${
+          align === "center" ? "lg:text-[42px]" : "lg:text-[34px]"
+        }`}
+      >
         {title}
       </h2>
-      {subtitle ? <p className="mt-4 text-base leading-7 text-text-muted sm:text-lg">{subtitle}</p> : null}
+      {subtitle ? <p className="mt-3 text-base leading-7 text-text-muted">{subtitle}</p> : null}
     </div>
   );
 }

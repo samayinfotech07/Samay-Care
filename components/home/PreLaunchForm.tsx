@@ -121,20 +121,20 @@ export function PreLaunchForm() {
   }
 
   return (
-    <section id="prelaunch-form" className="bg-teal-soft py-20 lg:py-28">
+    <section id="prelaunch-form" className="bg-teal-soft py-10 lg:py-14">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-[1fr_1fr_0.85fr] lg:gap-10">
-          <div className="lg:pt-6">
+        <div className="grid gap-8 lg:grid-cols-[1fr_1fr_0.85fr] lg:gap-10">
+          <div>
             <p className="text-sm font-semibold uppercase tracking-wide text-teal">We&rsquo;re Pre-Launch</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-navy sm:text-4xl">
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-navy sm:text-4xl">
               And Coming to You Soon!
             </h2>
-            <p className="mt-5 max-w-md text-base leading-7 text-text-muted">
+            <p className="mt-3 max-w-md text-base leading-7 text-text-muted">
               Tell us where you are and what kind of healthcare assistance you need. Your interest
               helps us decide where Samay Care should launch next.
             </p>
 
-            <ul className="mt-8 space-y-3">
+            <ul className="mt-5 space-y-2">
               {benefits.map((benefit) => (
                 <li key={benefit} className="flex items-start gap-3 text-sm leading-6 text-text">
                   <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal" aria-hidden="true" />
@@ -144,7 +144,7 @@ export function PreLaunchForm() {
             </ul>
           </div>
 
-          <div className="rounded-3xl border border-border bg-white p-6 shadow-[0_20px_60px_rgba(16,43,58,0.08)] sm:p-8">
+          <div className="rounded-3xl border border-border bg-white p-6 shadow-[0_20px_60px_rgba(16,43,58,0.08)]">
             {status === "success" ? (
               <div className="flex flex-col items-center py-8 text-center" role="status">
                 <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-teal-light">
@@ -172,7 +172,7 @@ export function PreLaunchForm() {
                 <h3 className="text-xl font-semibold text-navy">Show Your Interest</h3>
                 <p className="mt-1.5 text-sm text-text-muted">Tell us where we should launch first.</p>
 
-                <form className="mt-6 space-y-5" onSubmit={handleSubmit} noValidate>
+                <form className="mt-4 space-y-3" onSubmit={handleSubmit} noValidate>
                   {status === "error" && submitError ? (
                     <p role="alert" className="rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
                       {submitError}
