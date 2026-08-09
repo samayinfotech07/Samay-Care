@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+:root {
+  /* Samay Care brand tokens — docs/SAMAY_CARE_BRAND_GUIDELINES.md */
+  --sc-teal: #087f73;
+  --sc-teal-dark: #005e59;
+  --sc-teal-light: #e8f7f4;
+  --sc-teal-soft: #f2faf8;
+
+  --sc-navy: #102b3a;
+  --sc-text: #203746;
+  --sc-text-muted: #60727d;
+
+  --sc-white: #ffffff;
+  --sc-surface: #f8fcfb;
+  --sc-border: #ddebe8;
+
+  --sc-success: #14866f;
+  --sc-accent: #0c9a87;
+
+  --background: var(--sc-white);
+  --foreground: var(--sc-text);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-teal: var(--sc-teal);
+  --color-teal-dark: var(--sc-teal-dark);
+  --color-teal-light: var(--sc-teal-light);
+  --color-teal-soft: var(--sc-teal-soft);
+
+  --color-navy: var(--sc-navy);
+  --color-text: var(--sc-text);
+  --color-text-muted: var(--sc-text-muted);
+
+  --color-surface: var(--sc-surface);
+  --color-border: var(--sc-border);
+
+  --color-success: var(--sc-success);
+  --color-accent: var(--sc-accent);
+
+  --font-sans: var(--font-inter);
+
+  --container-content: 1280px;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer utilities {
+  .fade-up {
+    animation: fade-up 0.6s ease-out both;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
