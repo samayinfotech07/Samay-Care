@@ -15,7 +15,7 @@ export const howItWorksSteps = [
     number: "03",
     icon: "car",
     title: "CareBuddy Reaches You",
-    description: "At the hospital, or from home.",
+    description: "Meet at Hospital or Accompany from Home.",
   },
   {
     number: "04",

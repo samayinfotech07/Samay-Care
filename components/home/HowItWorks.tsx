@@ -19,12 +19,12 @@ export function HowItWorks() {
                 {index < howItWorksSteps.length - 1 ? (
                   <span
                     aria-hidden="true"
-                    className="absolute left-[calc(50%+34px)] top-7 hidden h-px w-[calc(100%-68px)] bg-border lg:block"
+                    className="absolute left-[calc(50%+44px)] top-9 hidden h-px w-[calc(100%-88px)] bg-border lg:block"
                   />
                 ) : null}
-                <div className="relative mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-teal-light">
-                  <Icon className="h-6 w-6 text-teal" strokeWidth={2} aria-hidden="true" />
-                  <span className="absolute -left-1 -top-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-teal-dark text-[10px] font-semibold text-white">
+                <div className="relative mx-auto inline-flex h-[72px] w-[72px] items-center justify-center rounded-full bg-teal-light">
+                  <Icon className="h-8 w-8 text-teal" strokeWidth={2} aria-hidden="true" />
+                  <span className="absolute -bottom-1 -left-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-teal-dark text-[11px] font-semibold text-white">
                     {step.number.replace(/^0/, "")}
                   </span>
                 </div>

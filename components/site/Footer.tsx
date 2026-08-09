@@ -48,7 +48,7 @@ export function Footer() {
             <ul className="mt-4 space-y-3">
               {contactDetails.map((contact) => (
                 <li key={contact.label} className="flex items-center gap-2.5">
-                  <contact.icon className="h-4 w-4 shrink-0 text-white/70" strokeWidth={2} aria-hidden="true" />
+                  <contact.icon className="h-5 w-5 shrink-0 text-white/70" strokeWidth={2} aria-hidden="true" />
                   <a
                     href={contact.href}
                     className="text-sm text-white/70 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 rounded"

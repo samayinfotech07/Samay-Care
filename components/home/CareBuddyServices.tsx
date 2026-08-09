@@ -51,9 +51,7 @@ export function CareBuddyServices() {
                 className="flex flex-col items-center gap-2 rounded-2xl bg-teal-soft p-3 text-center transition-colors hover:bg-teal-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
                 onClick={() => requestAssistance(service.title, service.assistanceType)}
               >
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white">
-                  <Icon className="h-4 w-4 text-teal" strokeWidth={2} aria-hidden="true" />
-                </span>
+                <Icon className="h-5 w-5 text-teal" strokeWidth={2} aria-hidden="true" />
                 <span className="text-[13px] font-semibold leading-tight text-navy">{service.title}</span>
                 <span className="sr-only"> {service.description} Request this assistance.</span>
               </button>

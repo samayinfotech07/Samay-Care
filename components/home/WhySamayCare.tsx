@@ -16,8 +16,8 @@ export function WhySamayCare() {
             const Icon = icons[reason.icon];
             return (
               <div key={reason.title}>
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-light">
-                  <Icon className="h-6 w-6 text-teal" strokeWidth={2} aria-hidden="true" />
+                <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-light">
+                  <Icon className="h-7 w-7 text-teal" strokeWidth={2} aria-hidden="true" />
                 </span>
                 <h3 className="mt-4 text-base font-semibold text-navy">{reason.title}</h3>
                 <p className="mt-1.5 text-sm leading-6 text-text-muted">{reason.description}</p>

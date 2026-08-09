@@ -67,7 +67,7 @@ export function Hero() {
             const Icon = trustIcons[item.icon];
             return (
               <div key={item.line1} className="flex items-center gap-3 py-3 sm:flex-1 sm:justify-center sm:py-0">
-                <Icon className="h-5 w-5 shrink-0 text-teal" strokeWidth={2} aria-hidden="true" />
+                <Icon className="h-7 w-7 shrink-0 text-teal" strokeWidth={2} aria-hidden="true" />
                 <p className="text-sm leading-5 text-text">
                   {item.line1}
                   <br />

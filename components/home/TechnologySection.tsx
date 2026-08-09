@@ -22,8 +22,8 @@ export function TechnologySection() {
               const Icon = icons[feature.icon];
               return (
                 <li key={feature.title} className="flex items-start gap-3">
-                  <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-teal-light">
-                    <Icon className="h-4 w-4 text-teal" strokeWidth={2} aria-hidden="true" />
+                  <span className="mt-0.5 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-teal-light">
+                    <Icon className="h-6 w-6 text-teal" strokeWidth={2} aria-hidden="true" />
                   </span>
                   <div>
                     <h3 className="text-sm font-semibold text-navy">{feature.title}</h3>
