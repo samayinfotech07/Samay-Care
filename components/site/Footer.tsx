@@ -67,7 +67,7 @@ export function Footer() {
         </div>
 
         <div className="mt-6 flex flex-col gap-4 border-t border-white/15 pt-6 text-sm text-white/75 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Samay Care, a brand of Samay Invotech Private Limited. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Samay Care. All rights reserved.</p>
           <p>Currently in pre-launch across India.</p>
         </div>
       </Container>

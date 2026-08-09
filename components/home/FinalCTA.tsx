@@ -18,17 +18,16 @@ export function FinalCTA() {
         <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Button
             href="#prelaunch-form"
+            variant="inverse"
             size="lg"
-            className="bg-white text-teal-dark hover:bg-white/90"
             onClick={() => track("hero_notify_click", { location: "final_cta" })}
           >
             Notify Me &rarr;
           </Button>
           <Button
             href="#prelaunch-form"
-            variant="ghost"
+            variant="ghost-inverse"
             size="lg"
-            className="text-white hover:bg-white/10"
             onClick={() => track("hero_interest_click", { location: "final_cta" })}
           >
             I&rsquo;m Interested

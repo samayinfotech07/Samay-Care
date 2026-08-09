@@ -24,7 +24,7 @@ export function Hero() {
             <h1 className="mt-4 text-4xl font-semibold leading-[1.15] tracking-tight text-navy sm:text-5xl lg:text-[42px] xl:text-[48px]">
               Time matters in healthcare.
               <br />
-              <span className="text-teal">We bring care on time.</span>
+              <span className="font-bold text-teal">We bring care on time.</span>
             </h1>
 
             <p className="mt-4 max-w-xl text-base leading-7 text-text-muted">
