@@ -46,36 +46,20 @@ function TechnologyVisual() {
 
   return (
     <div
-      className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-b from-surface to-white p-6 sm:p-8"
+      className="flex h-full flex-col items-center justify-center rounded-3xl border border-border bg-gradient-to-b from-surface to-white p-8"
       aria-hidden="true"
     >
-      <div className="relative rounded-2xl border border-border bg-teal-soft p-6">
-        <div className="absolute left-6 top-6 h-2 w-2 rounded-full bg-teal" />
-        <div className="absolute bottom-8 right-10 h-2 w-2 rounded-full bg-navy" />
-        <svg viewBox="0 0 300 160" className="h-32 w-full">
-          <path
-            d="M20 130 C 80 40, 180 150, 280 30"
-            fill="none"
-            stroke="#087F73"
-            strokeWidth="3"
-            strokeDasharray="6 8"
-            strokeLinecap="round"
-          />
-          <circle cx="20" cy="130" r="6" fill="#102B3A" />
-          <circle cx="280" cy="30" r="6" fill="#087F73" />
-        </svg>
-        <div className="mt-2 inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-2 text-xs font-semibold text-navy shadow-sm">
-          <span className="h-2 w-2 rounded-full bg-teal" />
-          CareBuddy on the way &middot; ETA 10 min
-        </div>
-        <p className="mt-2 text-[11px] text-text-muted">Conceptual visualization — not live location data.</p>
-      </div>
-
-      <ol className="mt-6 flex flex-wrap items-center gap-2 text-xs font-medium text-navy">
+      <ol className="flex flex-col items-center gap-3">
         {journey.map((step, index) => (
-          <li key={step} className="flex items-center gap-2">
-            <span className="rounded-full border border-border bg-white px-3 py-1.5">{step}</span>
-            {index < journey.length - 1 ? <span className="text-teal">&rarr;</span> : null}
+          <li key={step} className="flex flex-col items-center gap-3">
+            <span className="rounded-full border border-border bg-white px-4 py-2 text-sm font-medium text-navy shadow-sm">
+              {step}
+            </span>
+            {index < journey.length - 1 ? (
+              <span className="text-teal" aria-hidden="true">
+                &darr;
+              </span>
+            ) : null}
           </li>
         ))}
       </ol>

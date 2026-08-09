@@ -1,12 +1,19 @@
+import { Mail, Phone, Globe as GlobeIcon } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/site/Logo";
 import { footerColumns } from "@/data/footer";
+
+const contactDetails = [
+  { icon: Phone, label: "+91 72100 00700", href: "tel:+917210000700" },
+  { icon: Mail, label: "hello@samaycare.com", href: "mailto:hello@samaycare.com" },
+  { icon: GlobeIcon, label: "www.samaycare.com", href: "https://samaycare.com" },
+];
 
 export function Footer() {
   return (
     <footer className="bg-teal-dark text-white/90">
       <Container className="py-16 lg:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1.1fr]">
           <div>
             <Logo variant="light" />
             <p className="mt-4 text-sm font-medium text-white/70">Making Healthcare Convenient.</p>
@@ -35,6 +42,23 @@ export function Footer() {
               </ul>
             </div>
           ))}
+
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-white">Contact Us</h3>
+            <ul className="mt-4 space-y-3">
+              {contactDetails.map((contact) => (
+                <li key={contact.label} className="flex items-center gap-2.5">
+                  <contact.icon className="h-4 w-4 shrink-0 text-white/70" strokeWidth={2} aria-hidden="true" />
+                  <a
+                    href={contact.href}
+                    className="text-sm text-white/70 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 rounded"
+                  >
+                    {contact.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="mt-12 rounded-2xl border border-white/15 bg-white/5 p-5 text-sm leading-6 text-white/80">

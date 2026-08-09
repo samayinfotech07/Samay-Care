@@ -34,7 +34,7 @@ export function Header() {
         isScrolled ? "shadow-[0_1px_0_rgba(16,43,58,0.08)]" : ""
       }`}
     >
-      <Container className="flex h-18 items-center justify-between py-4">
+      <Container className="flex items-center justify-between py-3.5">
         <a href="#top" className="rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal">
           <Logo />
         </a>

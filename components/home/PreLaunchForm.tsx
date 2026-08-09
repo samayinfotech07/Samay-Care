@@ -2,12 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
-import { CheckCircle2, Loader2 } from "lucide-react";
+import { CheckCircle2, Loader2, Mail, MapPin, Phone, User } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { Button } from "@/components/ui/Button";
+import { PreLaunchVisual } from "@/components/home/PreLaunchVisual";
 import { assistanceTypeOptions } from "@/data/assistanceTypes";
 import { validatePreLaunchLead, type FieldErrors } from "@/lib/validation";
 import { submitPreLaunchLead } from "@/lib/lead-service";
@@ -122,7 +123,7 @@ export function PreLaunchForm() {
   return (
     <section id="prelaunch-form" className="bg-teal-soft py-20 lg:py-28">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1fr_0.85fr] lg:gap-10">
           <div className="lg:pt-6">
             <p className="text-sm font-semibold uppercase tracking-wide text-teal">We&rsquo;re Pre-Launch</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-navy sm:text-4xl">
@@ -181,6 +182,8 @@ export function PreLaunchForm() {
                   <Input
                     id="lead-name"
                     label="Full Name"
+                    hideLabel
+                    icon={User}
                     required
                     autoComplete="name"
                     value={form.name}
@@ -191,6 +194,8 @@ export function PreLaunchForm() {
                   <Input
                     id="lead-phone"
                     label="Mobile Number"
+                    hideLabel
+                    icon={Phone}
                     required
                     type="tel"
                     inputMode="tel"
@@ -204,6 +209,8 @@ export function PreLaunchForm() {
                   <Input
                     id="lead-city"
                     label="City"
+                    hideLabel
+                    icon={MapPin}
                     required
                     autoComplete="address-level2"
                     value={form.city}
@@ -215,6 +222,8 @@ export function PreLaunchForm() {
                   <Input
                     id="lead-email"
                     label="Email Address"
+                    hideLabel
+                    icon={Mail}
                     type="email"
                     autoComplete="email"
                     value={form.email}
@@ -261,6 +270,8 @@ export function PreLaunchForm() {
               </>
             )}
           </div>
+
+          <PreLaunchVisual />
         </div>
       </Container>
     </section>

@@ -14,8 +14,8 @@ export const bookingModes = [
 ] as const;
 
 export const heroTrustIndicators = [
-  "Trained & Verified CareBuddies",
-  "Background Verified",
-  "Non-Clinical Support",
-  "Your Time, Our Priority",
-];
+  { icon: "users", line1: "Trained & Verified", line2: "CareBuddies" },
+  { icon: "shieldCheck", line1: "Background Verified", line2: "for Your Safety" },
+  { icon: "heart", line1: "Non-Clinical", line2: "Support" },
+  { icon: "clock", line1: "Your Time,", line2: "Our Priority" },
+] as const;
