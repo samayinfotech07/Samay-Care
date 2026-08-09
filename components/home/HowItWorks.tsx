@@ -11,15 +11,40 @@ export function HowItWorks() {
       <Container>
         <SectionHeading title="How Booking a CareBuddy Works" />
 
-        <div className="mt-8 -mx-6 flex snap-x gap-8 overflow-x-auto px-6 pb-4 lg:mx-0 lg:grid lg:grid-cols-5 lg:gap-4 lg:overflow-visible lg:px-0 lg:pb-0">
+        {/* Mobile/tablet: vertical timeline — always fully visible, no scrolling. */}
+        <div className="mt-8 flex flex-col lg:hidden">
           {howItWorksSteps.map((step, index) => {
             const Icon = icons[step.icon];
             return (
-              <div key={step.number} className="relative min-w-[170px] snap-start text-center lg:min-w-0">
+              <div key={step.number} className="relative flex gap-4 pb-8 last:pb-0">
+                {index < howItWorksSteps.length - 1 ? (
+                  <span aria-hidden="true" className="absolute left-8 top-16 h-[calc(100%-56px)] w-px bg-border" />
+                ) : null}
+                <div className="relative inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-teal-light">
+                  <Icon className="h-7 w-7 text-teal" strokeWidth={2} aria-hidden="true" />
+                  <span className="absolute -bottom-1 -left-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-teal-dark text-[11px] font-semibold text-white">
+                    {step.number.replace(/^0/, "")}
+                  </span>
+                </div>
+                <div className="pt-1">
+                  <h3 className="text-[15px] font-semibold text-navy">{step.title}</h3>
+                  <p className="mt-1 text-sm leading-6 text-text-muted">{step.description}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Desktop: horizontal flow with connecting lines. */}
+        <div className="mt-8 hidden lg:grid lg:grid-cols-5 lg:gap-4">
+          {howItWorksSteps.map((step, index) => {
+            const Icon = icons[step.icon];
+            return (
+              <div key={step.number} className="relative text-center">
                 {index < howItWorksSteps.length - 1 ? (
                   <span
                     aria-hidden="true"
-                    className="absolute left-[calc(50%+44px)] top-9 hidden h-px w-[calc(100%-88px)] bg-border lg:block"
+                    className="absolute left-[calc(50%+44px)] top-9 h-px w-[calc(100%-88px)] bg-border"
                   />
                 ) : null}
                 <div className="relative mx-auto inline-flex h-[72px] w-[72px] items-center justify-center rounded-full bg-teal-light">

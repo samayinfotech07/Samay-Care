@@ -18,9 +18,9 @@ export function FutureVision() {
           Starting with a CareBuddy. Building for the complete healthcare journey.
         </h2>
 
-        <div className="mt-6 -mx-6 flex snap-x gap-2 overflow-x-auto px-6 sm:justify-center sm:overflow-visible sm:flex-wrap">
+        <div className="mt-6 flex flex-wrap justify-center gap-2">
           {journey.map((step, index) => (
-            <div key={step} className="flex shrink-0 items-center gap-2 snap-start">
+            <div key={step} className="flex items-center gap-2">
               <span className="rounded-full border border-border bg-white px-4 py-2 text-sm font-medium text-navy">
                 {step}
               </span>
