@@ -6,15 +6,17 @@ export function SectionHeading({
   subtitle,
   align = "center",
   id,
+  maxWidthClassName = "max-w-2xl",
 }: {
   eyebrow?: string;
   title: ReactNode;
   subtitle?: ReactNode;
   align?: "center" | "left";
   id?: string;
+  maxWidthClassName?: string;
 }) {
   return (
-    <div className={`max-w-2xl ${align === "center" ? "mx-auto text-center" : "text-left"}`}>
+    <div className={`${maxWidthClassName} ${align === "center" ? "mx-auto text-center" : "text-left"}`}>
       {eyebrow ? (
         <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-teal">{eyebrow}</p>
       ) : null}
