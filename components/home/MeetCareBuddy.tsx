@@ -3,27 +3,49 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
-  ArrowRight,
-  BellRing,
+  Bell,
+  Building2,
   CheckCircle2,
   ChevronRight,
   Circle,
-  Handshake,
-  Route,
+  ClipboardCheck,
+  FileText,
+  FlaskConical,
+  Heart,
+  Home,
+  IdCard,
+  MapPin,
+  Pill,
+  ShieldCheck,
+  Signal,
+  Smartphone,
+  Ticket,
+  User,
+  Users,
+  Wifi,
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import {
   accompanyModes,
   careBuddyCapabilities,
+  journeyConnectionNodes,
   journeyUpdatePreview,
-  navigateJourneyChips,
+  navigateJourneySteps,
   type CareBuddyCapability,
 } from "@/data/careBuddyCapabilities";
 
-const icons = { handshake: Handshake, route: Route, bellRing: BellRing };
-
-const journeyNodes = ["Patient", "CareBuddy", "Samay Care", "Family"];
+const capabilityIcons = { users: Users, mapPin: MapPin, smartphone: Smartphone };
+const accompanyIcons = { pin: MapPin, home: Home };
+const navigateIcons = {
+  clipboardCheck: ClipboardCheck,
+  ticket: Ticket,
+  building2: Building2,
+  flaskConical: FlaskConical,
+  pill: Pill,
+  fileText: FileText,
+};
+const connectionIcons = { user: User, idCard: IdCard, heart: Heart, users: Users };
 
 export function MeetCareBuddy() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -48,9 +70,25 @@ export function MeetCareBuddy() {
   return (
     <section id="meet-carebuddy" ref={sectionRef} className="bg-surface py-10 lg:py-14">
       <Container>
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[42%_1fr] lg:gap-10">
+          <div className="min-w-0 lg:col-start-2 lg:row-start-1">
+            <span className="inline-flex items-center rounded-full bg-teal-light px-3 py-1 text-xs font-semibold uppercase tracking-wide text-teal-dark">
+              Meet Your CareBuddy
+            </span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-navy sm:text-4xl lg:text-[38px]">
+              Meet your <span className="text-teal">CareBuddy.</span>
+            </h2>
+            <p className="mt-3 text-lg font-semibold text-navy">
+              A trusted person on the ground when you can&apos;t be there.
+            </p>
+            <p className="mt-2 max-w-xl text-base leading-7 text-text-muted">
+              Your CareBuddy helps your loved one navigate the non-clinical healthcare journey while
+              keeping the family informed every step of the way.
+            </p>
+          </div>
+
           <div
-            className={`relative mx-auto aspect-[373/484] w-full max-w-md overflow-hidden rounded-3xl border border-border bg-white shadow-[0_20px_60px_rgba(16,43,58,0.1)] lg:max-w-none ${
+            className={`relative mx-auto aspect-[373/484] w-full max-w-md overflow-hidden rounded-3xl border border-border bg-white shadow-[0_20px_60px_rgba(16,43,58,0.1)] lg:col-start-1 lg:row-start-1 lg:row-span-2 lg:mx-0 lg:max-w-none lg:sticky lg:top-24 ${
               hasRevealed ? "fade-up" : ""
             }`}
           >
@@ -58,69 +96,93 @@ export function MeetCareBuddy() {
               src="/images/hero-carebuddy.jpg"
               alt="A CareBuddy in a teal polo shirt with an ID badge walking alongside a patient in a hospital corridor"
               fill
-              sizes="(min-width: 1024px) 50vw, 100vw"
+              sizes="(min-width: 1024px) 42vw, 100vw"
               className="object-cover"
             />
+            <div className="absolute inset-x-4 bottom-4 sm:inset-x-6 sm:bottom-6">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-teal-dark/95 px-3.5 py-2 text-xs font-semibold text-white shadow-lg">
+                <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
+                Trusted CareBuddy
+              </span>
+            </div>
           </div>
 
-          <div>
-            <h2 className="text-3xl font-semibold tracking-tight text-navy sm:text-4xl lg:text-[34px]">
-              Meet your CareBuddy.
-            </h2>
-            <p className="mt-3 text-lg font-semibold text-navy">
-              A trusted person on the ground when you can&apos;t be there.
-            </p>
-            <p className="mt-2 text-base leading-7 text-text-muted">
-              Your CareBuddy helps your loved one navigate the non-clinical healthcare journey while
-              keeping the family informed every step of the way.
-            </p>
-
-            <div className="mt-8 space-y-4">
-              {careBuddyCapabilities.map((capability, index) => (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-start-2 lg:row-start-2">
+            {careBuddyCapabilities.map((capability, index) => (
+              <div key={capability.key} className={capability.key === "update" ? "sm:col-span-2" : ""}>
                 <CapabilityCard
-                  key={capability.key}
                   capability={capability}
                   revealed={hasRevealed}
                   delayMs={100 + index * 80}
                 />
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
 
         <div
-          className={`mx-auto mt-12 flex max-w-2xl flex-col items-center gap-2 sm:flex-row sm:justify-center sm:gap-3 ${
+          className={`mx-auto mt-10 flex flex-col gap-6 rounded-3xl bg-teal-soft p-6 sm:mt-12 sm:p-8 lg:flex-row lg:items-center lg:gap-8 ${
             hasRevealed ? "fade-up" : ""
           }`}
-          aria-hidden="true"
         >
-          {journeyNodes.map((node, index) => (
-            <div key={node} className="flex flex-col items-center gap-2 sm:flex-row">
-              <span className="rounded-full bg-white px-4 py-1.5 text-xs font-semibold text-navy shadow-sm">
-                {node}
-              </span>
-              {index < journeyNodes.length - 1 ? (
-                <ChevronRight
-                  className="h-4 w-4 shrink-0 rotate-90 text-teal/60 sm:rotate-0"
-                  strokeWidth={2.5}
-                />
-              ) : null}
-            </div>
-          ))}
-        </div>
+          <div className="flex items-center gap-4 lg:shrink-0">
+            <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-teal">
+              <Users className="h-7 w-7 text-white" strokeWidth={2} aria-hidden="true" />
+            </span>
+            <p className="text-lg font-semibold leading-snug text-navy sm:text-xl">
+              You may not be there.
+              <br />
+              <span className="text-teal">But you can still stay involved.</span>
+            </p>
+          </div>
 
-        <div className="mx-auto mt-10 max-w-3xl rounded-3xl bg-navy px-8 py-10 text-center sm:mt-12">
-          <p className="text-lg font-semibold text-white sm:text-xl">
-            You may not be there. But you can still stay involved.
-          </p>
-          <p className="mt-3 text-sm leading-6 text-white/75 sm:text-base">
+          <div className="hidden self-stretch border-l border-teal/20 lg:block" aria-hidden="true" />
+
+          <p className="text-sm leading-6 text-text-muted lg:max-w-xs">
             Samay Care helps put someone you trust on the ground while keeping you connected to the
             healthcare journey.
           </p>
+
+          <div
+            className="flex flex-1 items-center justify-center gap-2 overflow-x-auto sm:gap-3 lg:justify-end"
+            tabIndex={0}
+          >
+            {journeyConnectionNodes.map((node, index) => {
+              const Icon = connectionIcons[node.icon];
+              return (
+                <div key={node.label} className="flex items-center gap-2 sm:gap-3">
+                  <div className="flex shrink-0 flex-col items-center gap-1.5">
+                    <span
+                      className={`inline-flex h-12 w-12 items-center justify-center rounded-full ${
+                        node.tone === "outline" ? "border-2 border-teal bg-white" : "bg-teal"
+                      }`}
+                    >
+                      <Icon
+                        className={`h-5 w-5 ${node.tone === "outline" ? "text-teal" : "text-white"}`}
+                        strokeWidth={2}
+                        aria-hidden="true"
+                      />
+                    </span>
+                    <span className="whitespace-nowrap text-[11px] font-semibold text-navy">
+                      {node.label}
+                    </span>
+                  </div>
+                  {index < journeyConnectionNodes.length - 1 ? (
+                    <span
+                      className="h-0 w-4 shrink-0 border-t-2 border-dashed border-teal/50 sm:w-6"
+                      aria-hidden="true"
+                    />
+                  ) : null}
+                </div>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="mx-auto mt-10 max-w-lg text-center">
-          <p className="text-lg font-semibold text-navy">One journey. One CareBuddy. Less hassle.</p>
+        <div className="mx-auto mt-10 max-w-lg text-center sm:mt-12">
+          <p className="text-lg font-semibold text-navy sm:text-xl">
+            One journey. One CareBuddy. <span className="text-teal">Less hassle.</span>
+          </p>
           <p className="mt-2 text-sm leading-6 text-text-muted">
             Your loved one has someone beside them. Your family knows what&apos;s happening.
           </p>
@@ -129,6 +191,10 @@ export function MeetCareBuddy() {
               See How It Works &rarr;
             </Button>
           </div>
+          <p className="mt-4 flex items-center justify-center gap-1.5 text-xs text-text-muted">
+            <ShieldCheck className="h-3.5 w-3.5 text-teal" aria-hidden="true" />
+            Privacy-first. Only important updates, only with your consent.
+          </p>
         </div>
       </Container>
     </section>
@@ -144,83 +210,145 @@ function CapabilityCard({
   revealed: boolean;
   delayMs: number;
 }) {
-  const Icon = icons[capability.icon];
+  const Icon = capabilityIcons[capability.icon];
+  const isUpdate = capability.key === "update";
+
   return (
     <div
-      className={`rounded-2xl p-5 ${capability.emphasize ? "bg-teal-light" : "bg-white"} ${
+      className={`h-full min-w-0 overflow-hidden rounded-2xl border border-teal/15 bg-white p-6 shadow-[0_1px_3px_rgba(16,43,58,0.06)] ${
         revealed ? "fade-up" : ""
       }`}
       style={revealed ? { animationDelay: `${delayMs}ms` } : undefined}
     >
-      <div className="flex items-start gap-4">
-        <span
-          className={`inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${
-            capability.emphasize ? "bg-teal text-white" : "bg-teal-light text-teal"
-          }`}
-        >
-          <Icon className="h-6 w-6" strokeWidth={2} aria-hidden="true" />
-        </span>
-        <div className="min-w-0">
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-teal-dark">
-            {capability.title}
-          </h3>
-          <p className="mt-0.5 text-base font-semibold text-navy">{capability.headline}</p>
-          <p className="mt-1.5 text-sm leading-6 text-text-muted">{capability.description}</p>
+      <div className={isUpdate ? "flex flex-col gap-6 sm:flex-row sm:items-start" : ""}>
+        <div className={isUpdate ? "min-w-0 sm:flex-1" : ""}>
+          <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-teal">
+            <Icon className="h-6 w-6 text-white" strokeWidth={2} aria-hidden="true" />
+          </span>
+          <h3 className="mt-4 text-lg font-bold text-teal">{capability.title}</h3>
+          <p className="mt-1 text-[15px] font-semibold text-navy">{capability.headline}</p>
+          <p className="mt-2 text-sm leading-6 text-text-muted">{capability.description}</p>
 
-          {capability.key === "accompany" ? (
-            <div className="mt-3 flex flex-wrap gap-2">
-              {accompanyModes.map((mode) => (
-                <span
-                  key={mode}
-                  className="inline-flex items-center rounded-full border border-teal/25 bg-teal-soft px-2.5 py-1 text-[11px] font-medium text-teal-dark"
-                >
-                  {mode}
-                </span>
-              ))}
-            </div>
-          ) : null}
-
-          {capability.key === "navigate" ? (
-            <div className="mt-3 flex flex-wrap items-center gap-1">
-              {navigateJourneyChips.map((chip, i) => (
-                <span key={chip} className="flex items-center gap-1">
-                  <span className="text-[11px] font-medium text-text-muted">{chip}</span>
-                  {i < navigateJourneyChips.length - 1 ? (
-                    <ChevronRight className="h-3 w-3 text-teal/50" strokeWidth={2.5} aria-hidden="true" />
-                  ) : null}
-                </span>
-              ))}
-            </div>
-          ) : null}
-
-          {capability.key === "update" ? <JourneyUpdatePreview /> : null}
+          {capability.key === "accompany" ? <AccompanyModes /> : null}
+          {capability.key === "navigate" ? <NavigateSteps /> : null}
         </div>
+
+        {isUpdate ? <PhoneMockup /> : null}
       </div>
     </div>
   );
 }
 
-function JourneyUpdatePreview() {
+function AccompanyModes() {
   return (
-    <div className="mt-4 rounded-xl border border-teal/20 bg-white p-3" aria-hidden="true">
-      <p className="text-[11px] font-semibold text-navy">Journey Update</p>
-      <ul className="mt-2 space-y-1.5">
-        {journeyUpdatePreview.map((item) => (
-          <li key={item.label} className="flex items-center gap-2 text-[11px]">
-            {item.status === "done" ? (
-              <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-teal" />
-            ) : item.status === "current" ? (
-              <ArrowRight className="h-3.5 w-3.5 shrink-0 text-teal" />
-            ) : (
-              <Circle className="h-3.5 w-3.5 shrink-0 text-text-muted/50" />
-            )}
-            <span className={item.status === "upcoming" ? "text-text-muted" : "text-navy"}>
-              {item.label}
+    <div className="mt-4 flex flex-col gap-2">
+      {accompanyModes.map((mode) => {
+        const Icon = accompanyIcons[mode.icon];
+        return (
+          <span
+            key={mode.label}
+            className="inline-flex items-center gap-2.5 rounded-full border border-teal/20 bg-teal-soft px-3 py-2 text-sm font-medium text-navy"
+          >
+            <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal-light">
+              <Icon className="h-3.5 w-3.5 text-teal" strokeWidth={2} aria-hidden="true" />
             </span>
-          </li>
-        ))}
-      </ul>
-      <p className="mt-2 text-[10px] text-text-muted">
+            {mode.label}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
+function NavigateSteps() {
+  return (
+    <div className="relative mt-4">
+      <div
+        className="flex w-full items-start gap-1 overflow-x-auto pb-1"
+        role="list"
+        tabIndex={0}
+        aria-label="Non-clinical journey steps a CareBuddy helps coordinate"
+      >
+        {navigateJourneySteps.map((step, index) => {
+          const Icon = navigateIcons[step.icon];
+          return (
+            <div key={step.label} className="flex items-start gap-1" role="listitem">
+              <div className="flex w-12 shrink-0 flex-col items-center gap-1 text-center">
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-teal-light">
+                  <Icon className="h-4 w-4 text-teal" strokeWidth={2} aria-hidden="true" />
+                </span>
+                <span className="text-[9px] font-medium leading-tight text-text-muted">
+                  {step.label}
+                </span>
+              </div>
+              {index < navigateJourneySteps.length - 1 ? (
+                <ChevronRight className="mt-2 h-3 w-3 shrink-0 text-teal/40" aria-hidden="true" />
+              ) : null}
+            </div>
+          );
+        })}
+      </div>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0 right-0 w-6 bg-gradient-to-l from-white to-transparent"
+      />
+    </div>
+  );
+}
+
+function PhoneMockup() {
+  return (
+    <div
+      className="mx-auto w-[240px] shrink-0 rounded-[1.75rem] border-4 border-navy bg-white p-2 shadow-[0_20px_45px_rgba(16,43,58,0.18)] sm:mx-0"
+      aria-hidden="true"
+    >
+      <div className="flex items-center justify-between px-2 pb-1.5 text-[9px] font-medium text-navy">
+        <span>9:41</span>
+        <span className="flex items-center gap-1">
+          <Signal className="h-2.5 w-2.5" />
+          <Wifi className="h-2.5 w-2.5" />
+        </span>
+      </div>
+      <div className="rounded-2xl bg-surface p-3">
+        <div className="flex items-center justify-between">
+          <p className="text-[13px] font-bold text-navy">Samay Care</p>
+          <Bell className="h-3.5 w-3.5 text-text-muted" />
+        </div>
+        <p className="mt-2 text-[11px] font-semibold text-navy">Journey Update</p>
+        <ul className="mt-2 space-y-2">
+          {journeyUpdatePreview.map((item) => (
+            <li key={item.label} className="flex items-center justify-between gap-2 text-[10px]">
+              <span className="flex min-w-0 items-center gap-1.5">
+                {item.status === "done" ? (
+                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-teal" />
+                ) : item.status === "current" ? (
+                  <span className="inline-flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-teal">
+                    <span className="h-1.5 w-1.5 rounded-full bg-white" />
+                  </span>
+                ) : (
+                  <Circle className="h-3.5 w-3.5 shrink-0 text-border" />
+                )}
+                <span
+                  className={`truncate ${
+                    item.status === "upcoming" ? "text-text-muted" : "font-medium text-navy"
+                  }`}
+                >
+                  {item.label}
+                </span>
+              </span>
+              <span
+                className={`shrink-0 ${
+                  item.status === "current" ? "font-semibold text-teal" : "text-text-muted"
+                }`}
+              >
+                {item.time}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-3 text-center text-[10px] font-semibold text-teal">View All Updates</p>
+      </div>
+      <p className="mt-2 text-center text-[9px] text-text-muted">
         Conceptual preview &mdash; illustrative journey updates.
       </p>
     </div>
