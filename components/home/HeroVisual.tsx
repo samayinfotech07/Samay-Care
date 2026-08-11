@@ -15,7 +15,7 @@ const popularServices = [
 
 export function HeroVisual() {
   return (
-    <div className="relative mx-auto w-full max-w-[336px] sm:pr-20 lg:mx-0 lg:max-w-[80%] lg:pr-28">
+    <div className="relative mx-auto w-full max-w-[336px] sm:max-w-[500px] sm:pr-24 lg:mx-0 lg:max-w-[80%] lg:pr-28">
       <div className="relative aspect-[373/484] w-full overflow-hidden rounded-3xl border border-border bg-surface shadow-[0_20px_60px_rgba(16,43,58,0.1)]">
         <Image
           src="/images/hero-carebuddy.jpg"

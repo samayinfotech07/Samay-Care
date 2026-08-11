@@ -39,19 +39,19 @@ export function Header() {
           <Logo />
         </a>
 
-        <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-6 xl:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-text hover:text-teal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded"
+              className="whitespace-nowrap text-sm font-medium text-text hover:text-teal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden xl:block">
           <Button
             href="#prelaunch-form"
             size="md"
@@ -63,7 +63,7 @@ export function Header() {
 
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-xl text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal lg:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-xl text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal xl:hidden"
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -74,7 +74,7 @@ export function Header() {
       </Container>
 
       {isMenuOpen ? (
-        <div id="mobile-menu" className="border-t border-border bg-white lg:hidden">
+        <div id="mobile-menu" className="border-t border-border bg-white xl:hidden">
           <Container className="flex flex-col gap-1 py-4">
             {navLinks.map((link) => (
               <a
