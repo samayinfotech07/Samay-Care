@@ -18,18 +18,18 @@ export function Hero() {
           <div className="fade-up">
             <span className="inline-flex items-center gap-2 rounded-full border border-teal/25 bg-teal-light px-4 py-1.5 text-sm font-semibold text-teal-dark">
               <Rocket className="h-4 w-4" aria-hidden="true" />
-              Pre-Launch — Coming to Your City Soon!
+              Coming Soon — Launching City by City
             </span>
 
             <h1 className="mt-4 text-4xl font-semibold leading-[1.15] tracking-tight text-navy sm:text-5xl lg:text-[42px] xl:text-[48px]">
-              Time matters in healthcare.
+              Your loved one is not alone.
               <br />
-              <span className="font-bold text-teal">We bring care on time.</span>
+              <span className="font-bold text-teal">Neither are you.</span>
             </h1>
 
             <p className="mt-4 max-w-xl text-base leading-7 text-text-muted">
-              Samay Care connects you with a trusted CareBuddy who assists you at the hospital or
-              accompanies you from home &mdash; and handles the hassle.
+              Book a CareBuddy through Samay Care to accompany your loved one, simplify the OPD/IPD
+              journey, and keep you informed every step of the way.
             </p>
 
             <div className="mt-5 grid gap-3 sm:grid-cols-2">
@@ -52,7 +52,7 @@ export function Hero() {
                 className="inline-flex items-center gap-2 text-[15px] font-semibold text-teal hover:text-teal-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded"
               >
                 <PlayCircle className="h-5 w-5" aria-hidden="true" />
-                Watch How It Works
+                See How It Works
               </a>
             </div>
           </div>

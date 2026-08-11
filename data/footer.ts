@@ -4,19 +4,18 @@ export const footerColumns = [
     heading: "Quick Links",
     links: [
       { label: "Why Samay Care", href: "#why-samay-care" },
-      { label: "Services", href: "#carebuddy-services" },
+      { label: "CareBuddy", href: "#meet-carebuddy" },
       { label: "How It Works", href: "#how-it-works" },
       { label: "About Us", href: "#about-us" },
     ],
   },
   {
-    id: "for-enterprises",
-    heading: "For Enterprises",
+    id: "for-partners",
+    heading: "For Partners",
     links: [
-      { label: "Hospitals", href: "#prelaunch-form" },
-      { label: "Corporate Programs", href: "#prelaunch-form" },
-      { label: "Insurance Partners", href: "#prelaunch-form" },
-      { label: "CareBuddy Network", href: "#prelaunch-form" },
+      { label: "Hospitals", href: "#partner-with-us" },
+      { label: "Insurance Providers", href: "#partner-with-us" },
+      { label: "Corporates", href: "#partner-with-us" },
     ],
   },
   {

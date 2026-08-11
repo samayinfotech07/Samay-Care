@@ -1,21 +1,13 @@
 import { Container } from "@/components/ui/Container";
 
-const journey = [
-  "CareBuddy",
-  "Hospital Assistance",
-  "Diagnostics",
-  "Medicines",
-  "Insurance",
-  "Home Care",
-  "Follow-up",
-];
+const journey = ["OPD + IPD", "Diagnostics", "Pharmacy", "Insurance", "Home Care", "Follow-up"];
 
 export function FutureVision() {
   return (
     <section className="border-y border-border bg-surface py-10 lg:py-12">
       <Container className="text-center">
         <h2 className="text-2xl font-semibold tracking-tight text-navy sm:text-3xl">
-          Starting with a CareBuddy. Building for the complete healthcare journey.
+          Starting with the journey. Building for everything around it.
         </h2>
 
         <div className="mt-6 flex flex-wrap justify-center gap-2">
@@ -34,8 +26,8 @@ export function FutureVision() {
         </div>
 
         <p className="mx-auto mt-5 max-w-xl text-sm leading-6 text-text-muted">
-          Today we start by making hospital visits easier. Over time, Samay Care will connect more
-          of the healthcare journey around you.
+          We start by simplifying the patient journey. Over time, Samay Care can connect more of
+          the healthcare experience around the patient and family.
         </p>
       </Container>
     </section>

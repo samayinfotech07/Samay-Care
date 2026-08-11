@@ -1,18 +1,21 @@
 export type AssistanceType =
   | "opd-hospital-visit"
   | "ipd-admission-support"
-  | "senior-citizen-assistance"
   | "accompany-from-home"
+  | "meet-at-hospital"
   | "diagnostics-reports"
-  | "medicine-assistance"
+  | "pharmacy-medicines"
   | "insurance-documentation"
   | "other";
+
+export type RelationshipType = "myself" | "parent" | "spouse" | "child" | "other-family-member";
 
 export type PreLaunchLead = {
   name: string;
   phone: string;
   email?: string;
   city: string;
+  relationship: RelationshipType | "";
   assistanceType: AssistanceType | "";
   consent: boolean;
   source?: string;

@@ -6,8 +6,8 @@ import {
   CalendarClock,
   ClipboardList,
   FileSearch,
+  MessageCircle,
   Pill,
-  ShieldCheck,
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -21,7 +21,7 @@ const icons: Record<string, typeof ClipboardList> = {
   calendarCheck: CalendarCheck,
   fileSearch: FileSearch,
   pill: Pill,
-  shieldCheck: ShieldCheck,
+  messageCircle: MessageCircle,
   bedDouble: BedDouble,
   calendarClock: CalendarClock,
 };
@@ -29,6 +29,7 @@ const icons: Record<string, typeof ClipboardList> = {
 function requestAssistance(title: string, assistanceType: AssistanceType) {
   track("service_card_click", { service: title });
   track("service_interest_selected", { assistanceType });
+  track("assistance_type_selected", { assistanceType });
   window.dispatchEvent(
     new CustomEvent(PRESELECT_ASSISTANCE_EVENT, { detail: { assistanceType } })
   );

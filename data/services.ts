@@ -8,8 +8,8 @@ export const careBuddyServices: {
 }[] = [
   {
     icon: "clipboardList",
-    title: "Registration & Billing",
-    description: "Hospital registration and non-clinical billing coordination.",
+    title: "Registration & Queue",
+    description: "Registration, tokens and queue assistance.",
     assistanceType: "opd-hospital-visit",
   },
   {
@@ -26,21 +26,21 @@ export const careBuddyServices: {
   },
   {
     icon: "pill",
-    title: "Medicine Purchase & Delivery",
-    description: "Assist with medicine collection and partner fulfilment where available.",
-    assistanceType: "medicine-assistance",
-  },
-  {
-    icon: "shieldCheck",
-    title: "Insurance Assistance",
-    description: "Help coordinate documents and non-clinical insurance processes.",
-    assistanceType: "insurance-documentation",
+    title: "Pharmacy & Medicines",
+    description: "Coordinate pharmacy pickup and medicines.",
+    assistanceType: "pharmacy-medicines",
   },
   {
     icon: "bedDouble",
     title: "Admission & Discharge Help",
     description: "Assist with non-clinical admission and discharge processes.",
     assistanceType: "ipd-admission-support",
+  },
+  {
+    icon: "messageCircle",
+    title: "Family Updates",
+    description: "Keep the family informed at every step of the journey.",
+    assistanceType: "other",
   },
   {
     icon: "calendarClock",

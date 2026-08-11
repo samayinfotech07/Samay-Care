@@ -29,9 +29,9 @@ export function WhySamayCare() {
         <div id="about-us" className="mt-10 rounded-3xl bg-navy px-8 py-10 text-center sm:px-16">
           <h3 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">Our Story</h3>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white/75">
-            Healthcare is time-sensitive. When someone needs care, every minute matters &mdash; and
-            families should not have to spend that time figuring out queues, counters, directions
-            and paperwork.
+            Healthcare is time-sensitive. When someone needs care, every minute matters &mdash; but
+            patients and families can lose valuable time navigating queues, counters, departments,
+            paperwork and coordination.
           </p>
           <p className="mt-6 text-lg font-medium text-white">
             Samay means time. Care needs no definition.

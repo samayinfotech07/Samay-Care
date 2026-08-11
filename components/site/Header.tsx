@@ -55,9 +55,9 @@ export function Header() {
           <Button
             href="#prelaunch-form"
             size="md"
-            onClick={() => track("hero_notify_click", { location: "header" })}
+            onClick={() => track("hero_interest_click", { location: "header" })}
           >
-            Notify Me
+            I&rsquo;m Interested
           </Button>
         </div>
 
@@ -91,10 +91,10 @@ export function Header() {
               className="mt-2 w-full"
               onClick={() => {
                 setIsMenuOpen(false);
-                track("hero_notify_click", { location: "mobile_menu" });
+                track("hero_interest_click", { location: "mobile_menu" });
               }}
             >
-              Notify Me
+              I&rsquo;m Interested
             </Button>
           </Container>
         </div>

@@ -9,10 +9,13 @@ export function FinalCTA() {
     <section className="bg-teal-dark py-14 lg:py-16">
       <Container className="text-center">
         <h2 className="mx-auto max-w-2xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-          Healthcare is already complicated. Getting help shouldn&rsquo;t be.
+          You may not be able to be there.
+          <br />
+          But your loved one doesn&rsquo;t have to be alone.
         </h2>
         <p className="mx-auto mt-4 max-w-lg text-base leading-7 text-white/75">
-          Tell us where you are. We&rsquo;ll let you know when Samay Care comes to your city.
+          Book or request a CareBuddy through Samay Care and stay connected to the healthcare
+          journey.
         </p>
 
         <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -20,17 +23,17 @@ export function FinalCTA() {
             href="#prelaunch-form"
             variant="inverse"
             size="lg"
-            onClick={() => track("hero_notify_click", { location: "final_cta" })}
+            onClick={() => track("hero_interest_click", { location: "final_cta" })}
           >
-            Notify Me &rarr;
+            I&rsquo;m Interested &rarr;
           </Button>
           <Button
             href="#prelaunch-form"
             variant="ghost-inverse"
             size="lg"
-            onClick={() => track("hero_interest_click", { location: "final_cta" })}
+            onClick={() => track("hero_request_click", { location: "final_cta" })}
           >
-            I&rsquo;m Interested
+            Request Assistance
           </Button>
         </div>
       </Container>

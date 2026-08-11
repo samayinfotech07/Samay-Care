@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { Layers, Link2, Lock, Radio, Zap } from "lucide-react";
+import { Radio, UserCheck, Users } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { techFeatures } from "@/data/techFeatures";
+import { differentiationPillars } from "@/data/differentiation";
 
-const icons = { zap: Zap, radio: Radio, layoutGrid: Layers, link: Link2, lock: Lock };
+const icons = { userCheck: UserCheck, users: Users, radio: Radio };
 
 export function TechnologySection() {
   return (
@@ -13,21 +13,21 @@ export function TechnologySection() {
         <div>
           <SectionHeading
             align="left"
-            title="Technology That Enables Better Care"
-            subtitle="Faster CareBuddy assignment, real-time updates and secure coordination."
+            title="More than a companion. More than an app."
+            subtitle="Technology keeps everyone connected. CareBuddy keeps someone there."
           />
 
-          <ul className="mt-6 grid gap-4 sm:grid-cols-2">
-            {techFeatures.map((feature) => {
-              const Icon = icons[feature.icon];
+          <ul className="mt-6 space-y-5">
+            {differentiationPillars.map((pillar) => {
+              const Icon = icons[pillar.icon];
               return (
-                <li key={feature.title} className="flex items-start gap-3">
+                <li key={pillar.title} className="flex items-start gap-3">
                   <span className="mt-0.5 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-teal-light">
                     <Icon className="h-6 w-6 text-teal" strokeWidth={2} aria-hidden="true" />
                   </span>
                   <div>
-                    <h3 className="text-sm font-semibold text-navy">{feature.title}</h3>
-                    <p className="mt-1 text-sm leading-6 text-text-muted">{feature.description}</p>
+                    <h3 className="text-sm font-semibold text-navy">{pillar.title}</h3>
+                    <p className="mt-1 text-sm leading-6 text-text-muted">{pillar.description}</p>
                   </div>
                 </li>
               );
@@ -42,7 +42,7 @@ export function TechnologySection() {
 }
 
 function TechnologyVisual() {
-  const journey = ["Customer", "App", "Assignment", "CareBuddy", "Hospital"];
+  const journey = ["Patient", "CareBuddy", "Family"];
 
   return (
     <div>
@@ -56,14 +56,15 @@ function TechnologyVisual() {
           loading="lazy"
         />
       </div>
-      <ol className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs font-medium text-navy" aria-hidden="true">
-        {journey.map((step, index) => (
-          <li key={step} className="flex items-center gap-2">
-            <span className="rounded-full border border-border bg-white px-3 py-1.5">{step}</span>
-            {index < journey.length - 1 ? <span className="text-teal">&rarr;</span> : null}
-          </li>
+      <div className="mt-4 flex items-center justify-center gap-2 text-xs font-medium text-navy" aria-hidden="true">
+        {journey.map((node, index) => (
+          <div key={node} className="flex items-center gap-2">
+            <span className="rounded-full border border-border bg-white px-3 py-1.5">{node}</span>
+            {index < journey.length - 1 ? <span className="text-teal">&harr;</span> : null}
+          </div>
         ))}
-      </ol>
+      </div>
+      <p className="mt-3 text-center text-sm text-text-muted">Samay Care connects the healthcare journey.</p>
     </div>
   );
 }

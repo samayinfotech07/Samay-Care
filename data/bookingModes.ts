@@ -3,13 +3,13 @@ export const bookingModes = [
     id: "meet-at-hospital",
     icon: "hospital",
     title: "Meet at Hospital",
-    description: "Your CareBuddy meets you at the hospital and assists you.",
+    description: "Meets you at the hospital and helps navigate the visit.",
   },
   {
     id: "accompany-from-home",
     icon: "home",
     title: "Accompany from Home",
-    description: "Your CareBuddy comes to you and accompanies you to the hospital.",
+    description: "Meets you at home and stays with you through the journey.",
   },
 ] as const;
 

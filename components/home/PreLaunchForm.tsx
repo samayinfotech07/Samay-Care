@@ -10,11 +10,12 @@ import { Checkbox } from "@/components/ui/Checkbox";
 import { Button } from "@/components/ui/Button";
 import { PreLaunchVisual } from "@/components/home/PreLaunchVisual";
 import { assistanceTypeOptions } from "@/data/assistanceTypes";
+import { relationshipOptions } from "@/data/relationshipOptions";
 import { validatePreLaunchLead, type FieldErrors } from "@/lib/validation";
 import { submitPreLaunchLead } from "@/lib/lead-service";
 import { track, getUtmParams } from "@/lib/analytics";
 import { PRESELECT_ASSISTANCE_EVENT, type PreselectAssistanceDetail } from "@/lib/events";
-import type { AssistanceType } from "@/lib/types";
+import type { AssistanceType, RelationshipType } from "@/lib/types";
 
 const benefits = [
   "Be the first to know when we launch in your city",
@@ -28,6 +29,7 @@ type FormState = {
   phone: string;
   email: string;
   city: string;
+  relationship: RelationshipType | "";
   assistanceType: AssistanceType | "";
   consent: boolean;
 };
@@ -37,6 +39,7 @@ const initialState: FormState = {
   phone: "",
   email: "",
   city: "",
+  relationship: "",
   assistanceType: "",
   consent: false,
 };
@@ -46,6 +49,7 @@ export function PreLaunchForm() {
   const [errors, setErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [isRequest, setIsRequest] = useState(false);
   const hasStartedRef = useRef(false);
   const isSubmittingRef = useRef(false);
 
@@ -93,7 +97,8 @@ export function PreLaunchForm() {
     track("prelaunch_form_submit");
 
     if (form.city) track("city_selected", { city: form.city });
-    if (form.assistanceType) track("service_interest_selected", { assistanceType: form.assistanceType });
+    if (form.relationship) track("relationship_selected", { relationship: form.relationship });
+    if (form.assistanceType) track("assistance_type_selected", { assistanceType: form.assistanceType });
 
     const utm = getUtmParams();
     const result = await submitPreLaunchLead({
@@ -101,6 +106,7 @@ export function PreLaunchForm() {
       phone: form.phone.trim(),
       email: form.email.trim() || undefined,
       city: form.city.trim(),
+      relationship: form.relationship,
       assistanceType: form.assistanceType,
       consent: form.consent,
       source: "website",
@@ -111,6 +117,9 @@ export function PreLaunchForm() {
     isSubmittingRef.current = false;
 
     if (result.ok) {
+      // A specific assistance type turns this into a request rather than
+      // general interest — per docs/SAMAY_CARE_PHASE1_WEBSITE_V2.md §19.
+      setIsRequest(Boolean(form.assistanceType));
       setStatus("success");
       track("prelaunch_form_success");
     } else {
@@ -127,11 +136,11 @@ export function PreLaunchForm() {
           <div>
             <p className="text-sm font-semibold uppercase tracking-wide text-teal">We&rsquo;re Pre-Launch</p>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight text-navy sm:text-4xl">
-              And Coming to You Soon!
+              Want Samay Care in your city?
             </h2>
             <p className="mt-3 max-w-md text-base leading-7 text-text-muted">
               Tell us where you are and what kind of healthcare assistance you need. Your interest
-              helps us decide where Samay Care should launch next.
+              helps us decide where to launch next.
             </p>
 
             <ul className="mt-5 space-y-2">
@@ -150,11 +159,23 @@ export function PreLaunchForm() {
                 <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-teal-light">
                   <CheckCircle2 className="h-7 w-7 text-teal" aria-hidden="true" />
                 </span>
-                <h3 className="mt-5 text-xl font-semibold text-navy">You&rsquo;re on our list!</h3>
-                <p className="mt-2 max-w-sm text-sm leading-6 text-text-muted">
-                  Thank you for showing interest in Samay Care. We&rsquo;ll let you know when
-                  CareBuddy launches near you.
-                </p>
+                {isRequest ? (
+                  <>
+                    <h3 className="mt-5 text-xl font-semibold text-navy">We&rsquo;ve received your request.</h3>
+                    <p className="mt-2 max-w-sm text-sm leading-6 text-text-muted">
+                      Our team will review your location and assistance requirement and contact you
+                      regarding availability.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <h3 className="mt-5 text-xl font-semibold text-navy">You&rsquo;re on the Samay Care list.</h3>
+                    <p className="mt-2 max-w-sm text-sm leading-6 text-text-muted">
+                      Thank you for helping us understand where healthcare assistance is needed.
+                      We&rsquo;ll keep you updated as Samay Care comes to your city.
+                    </p>
+                  </>
+                )}
                 <button
                   type="button"
                   className="mt-6 text-sm font-medium text-teal hover:text-teal-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded"
@@ -232,16 +253,29 @@ export function PreLaunchForm() {
                   />
 
                   <Select
+                    id="lead-relationship"
+                    label="Who needs assistance?"
+                    placeholder="Who needs assistance?"
+                    options={relationshipOptions}
+                    value={form.relationship}
+                    onChange={(e) => {
+                      const value = e.target.value as RelationshipType;
+                      updateField("relationship", value);
+                      track("relationship_selected", { relationship: value });
+                    }}
+                    error={errors.relationship}
+                  />
+
+                  <Select
                     id="lead-assistance"
-                    label="What help do you need?"
-                    required
+                    label="What kind of help are you looking for?"
                     placeholder="Select assistance"
                     options={assistanceTypeOptions}
                     value={form.assistanceType}
                     onChange={(e) => {
                       const value = e.target.value as AssistanceType;
                       updateField("assistanceType", value);
-                      track("service_interest_selected", { assistanceType: value });
+                      track("assistance_type_selected", { assistanceType: value });
                     }}
                     error={errors.assistanceType}
                   />
@@ -261,7 +295,7 @@ export function PreLaunchForm() {
                         Submitting&hellip;
                       </>
                     ) : (
-                      "Notify Me"
+                      "Show Interest"
                     )}
                   </Button>
 

@@ -1,18 +1,28 @@
-import type { AssistanceType, PreLaunchLead } from "./types";
+import type { AssistanceType, PreLaunchLead, RelationshipType } from "./types";
 
 export type FieldErrors = Partial<
-  Record<"name" | "phone" | "city" | "email" | "assistanceType" | "consent", string>
+  Record<"name" | "phone" | "city" | "email" | "relationship" | "assistanceType" | "consent", string>
 >;
 
 const INDIAN_MOBILE_REGEX = /^[6-9]\d{9}$/;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function normalizePhone(raw: string): string {
-  return raw.replace(/[\s-]/g, "").replace(/^(\+91|91|0)/, "");
+  let digits = raw.replace(/[\s-]/g, "").replace(/^\+/, "");
+  // Only strip a country code / trunk prefix when the total length shows
+  // one is actually present — otherwise a bare 10-digit number that happens
+  // to start with "91" (e.g. 9123456789) gets corrupted by blindly removing
+  // those leading digits.
+  if (digits.length === 12 && digits.startsWith("91")) {
+    digits = digits.slice(2);
+  } else if (digits.length === 11 && digits.startsWith("0")) {
+    digits = digits.slice(1);
+  }
+  return digits;
 }
 
 export function validatePreLaunchLead(
-  input: Pick<PreLaunchLead, "name" | "phone" | "city" | "email" | "assistanceType" | "consent">
+  input: Pick<PreLaunchLead, "name" | "phone" | "city" | "email" | "relationship" | "assistanceType" | "consent">
 ): FieldErrors {
   const errors: FieldErrors = {};
 
@@ -40,9 +50,7 @@ export function validatePreLaunchLead(
     errors.email = "Please enter a valid email address.";
   }
 
-  if (!input.assistanceType) {
-    errors.assistanceType = "Please select the kind of help you need.";
-  }
+  // Relationship and assistance type are optional per the request form spec.
 
   if (!input.consent) {
     errors.consent = "Please provide consent to continue.";
@@ -55,11 +63,15 @@ export function isValidAssistanceType(value: string): value is AssistanceType {
   return [
     "opd-hospital-visit",
     "ipd-admission-support",
-    "senior-citizen-assistance",
     "accompany-from-home",
+    "meet-at-hospital",
     "diagnostics-reports",
-    "medicine-assistance",
+    "pharmacy-medicines",
     "insurance-documentation",
     "other",
   ].includes(value);
+}
+
+export function isValidRelationship(value: string): value is RelationshipType {
+  return ["myself", "parent", "spouse", "child", "other-family-member"].includes(value);
 }

@@ -8,7 +8,7 @@ export function AudienceSection() {
   return (
     <section className="py-8 lg:py-10">
       <Container>
-        <h2 className="sr-only">Who We&rsquo;re Building For</h2>
+        <h2 className="sr-only">Who We Help</h2>
         <div className="flex flex-col divide-y divide-border rounded-2xl bg-teal-soft p-6 lg:flex-row lg:divide-x lg:divide-y-0 lg:p-8">
           {audiences.map((audience) => {
             const Icon = icons[audience.icon];

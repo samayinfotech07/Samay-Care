@@ -1,15 +1,24 @@
 export type AnalyticsEvent =
   | "hero_notify_click"
   | "hero_interest_click"
+  | "hero_request_click"
   | "how_it_works_click"
   | "service_card_click"
   | "app_interest_click"
+  | "carebuddy_mode_meet_hospital"
+  | "carebuddy_mode_home"
+  | "opd_journey_view"
+  | "ipd_journey_view"
+  | "family_update_view"
   | "prelaunch_form_start"
   | "prelaunch_form_submit"
   | "prelaunch_form_success"
   | "prelaunch_form_error"
   | "city_selected"
+  | "relationship_selected"
   | "service_interest_selected"
+  | "assistance_type_selected"
+  | "partner_cta_click"
   | "footer_contact_click";
 
 export type AnalyticsPayload = Record<string, string | number | boolean | undefined>;

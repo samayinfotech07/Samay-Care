@@ -21,6 +21,7 @@ export async function POST(request: NextRequest) {
     phone: body.phone ?? "",
     city: body.city ?? "",
     email: body.email,
+    relationship: body.relationship ?? "",
     assistanceType: body.assistanceType ?? "",
     consent: body.consent ?? false,
   });
@@ -34,7 +35,8 @@ export async function POST(request: NextRequest) {
     phone: body.phone!.trim(),
     email: body.email?.trim() || undefined,
     city: body.city!.trim(),
-    assistanceType: body.assistanceType!,
+    relationship: body.relationship ?? "",
+    assistanceType: body.assistanceType ?? "",
     consent: Boolean(body.consent),
     source: body.source ?? "website",
     utmSource: body.utmSource,

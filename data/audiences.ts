@@ -1,22 +1,22 @@
 export const audiences = [
   {
     icon: "userRound",
-    title: "For Senior Citizens",
-    description: "Compassionate assistance with dignity and respect.",
+    title: "Patients",
+    description: "Help navigating a complex healthcare journey.",
   },
   {
     icon: "users",
-    title: "For Families",
-    description: "Peace of mind, even when you can't be there.",
+    title: "Family Attendants",
+    description: "Someone to coordinate the journey with you.",
   },
   {
     icon: "briefcase",
-    title: "For Working Professionals",
-    description: "Save time, avoid leave, stay stress-free.",
+    title: "Working Professionals",
+    description: "Support when work and family responsibilities collide.",
   },
   {
     icon: "globe",
-    title: "For NRIs",
-    description: "Trusted support for your loved ones in India.",
+    title: "Families Living Away",
+    description: "Stay involved from across the city, the country or abroad.",
   },
 ] as const;

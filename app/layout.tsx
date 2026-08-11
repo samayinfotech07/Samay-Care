@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s | Samay Care",
   },
   description:
-    "Samay Care makes healthcare convenient with CareBuddy assistance for hospital visits, patient navigation and non-clinical healthcare coordination. Coming soon to your city.",
+    "Samay Care simplifies the OPD and IPD journey with trusted CareBuddy assistance, helping patients and families navigate hospitals and stay informed throughout the healthcare journey.",
   alternates: {
     canonical: "/",
   },
@@ -27,12 +27,12 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "Samay Care",
     title: "Samay Care — Making Healthcare Convenient",
-    description: "Meet CareBuddy — trusted human assistance for hospital visits, coming soon to your city.",
+    description: "Your loved one is not alone. Neither are you — meet CareBuddy, coming soon to your city.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Samay Care — Making Healthcare Convenient",
-    description: "Meet CareBuddy — trusted human assistance for hospital visits, coming soon to your city.",
+    description: "Your loved one is not alone. Neither are you — meet CareBuddy, coming soon to your city.",
   },
   robots: {
     index: true,
@@ -48,7 +48,7 @@ const organizationJsonLd = {
   url: siteUrl,
   slogan: "Making Healthcare Convenient.",
   description:
-    "Samay Care is a pre-launch healthcare convenience platform connecting customers with CareBuddies — trained, non-clinical human assistants for the hospital journey.",
+    "Samay Care is a healthcare convenience platform. CareBuddy is the human assistance service provided through Samay Care — CareBuddies accompany patients and help navigate the non-clinical OPD/IPD journey, and Samay Care helps families stay informed when they cannot be physically present.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
