@@ -69,7 +69,7 @@ export function MeetCareBuddy() {
   return (
     <section id="meet-carebuddy" ref={sectionRef} className="bg-surface py-10 lg:py-14">
       <Container>
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[38%_minmax(0,1fr)] lg:gap-8">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[30%_minmax(0,1fr)] lg:gap-8">
           <div className="min-w-0 lg:col-start-2 lg:row-start-1">
             <span className="inline-flex items-center rounded-full bg-teal-light px-3 py-1 text-xs font-semibold uppercase tracking-wide text-teal-dark">
               Meet Your CareBuddy
@@ -95,7 +95,7 @@ export function MeetCareBuddy() {
               src="/images/hero-carebuddy.jpg"
               alt="A CareBuddy in a teal polo shirt with an ID badge walking alongside a patient in a hospital corridor"
               fill
-              sizes="(min-width: 1024px) 38vw, 100vw"
+              sizes="(min-width: 1024px) 30vw, 100vw"
               className="object-cover"
             />
             <div className="absolute inset-x-4 bottom-4 sm:inset-x-6 sm:bottom-6">
@@ -145,10 +145,7 @@ export function MeetCareBuddy() {
             healthcare journey.
           </p>
 
-          <div
-            className="flex flex-1 items-center justify-center gap-2 overflow-x-auto sm:gap-3 lg:justify-end"
-            tabIndex={0}
-          >
+          <div className="flex flex-1 flex-wrap items-center justify-center gap-y-3 gap-x-2 sm:gap-x-3 lg:justify-end">
             {journeyConnectionNodes.map((node, index) => {
               const Icon = connectionIcons[node.icon];
               return (
@@ -224,11 +221,13 @@ function CapabilityCard({
     >
       <div className={isUpdate ? "flex flex-col gap-4 sm:flex-row sm:items-start xl:flex-col" : ""}>
         <div className={isUpdate ? "min-w-0 sm:flex-1" : ""}>
-          <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-teal">
-            <Icon className="h-6 w-6 text-white" strokeWidth={2} aria-hidden="true" />
-          </span>
-          <h3 className="mt-3 text-xl font-bold text-teal">{capability.title}</h3>
-          <p className="mt-1 text-[15px] font-semibold text-navy">{capability.headline}</p>
+          <div className="flex items-center gap-3">
+            <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-teal">
+              <Icon className="h-5 w-5 text-white" strokeWidth={2} aria-hidden="true" />
+            </span>
+            <h3 className="text-xl font-bold text-teal">{capability.title}</h3>
+          </div>
+          <p className="mt-3 text-[15px] font-semibold text-navy">{capability.headline}</p>
           <p className="mt-1.5 text-sm leading-6 text-text-muted">{capability.description}</p>
 
           {capability.key === "accompany" ? <AccompanyModes /> : null}
