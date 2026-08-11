@@ -1,12 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import { validatePreLaunchLead } from "@/lib/validation";
 import type { PreLaunchLead } from "@/lib/types";
+import { sendEmail } from "@/lib/email/client";
+import { buildThankYouEmail } from "@/lib/email/thankYouEmail";
+import { buildLeadNotificationEmail } from "@/lib/email/leadNotificationEmail";
+import { appendLeadToSheet } from "@/lib/sheets";
 
 /**
- * Pre-launch lead intake. No lead-storage backend is configured yet, so we
- * validate server-side and log structured lead data for now. Once
- * SAMAYCARE_LEAD_API_URL / SAMAYCARE_LEAD_API_KEY are set (see .env.example),
- * this forwards leads to that endpoint instead of just logging them.
+ * Pre-launch lead intake. Validates server-side, then fans out to whichever
+ * of these are configured (see .env.example) — none are required, and any
+ * that error are logged rather than failing the submission:
+ *   - SAMAYCARE_LEAD_API_URL: forwards the lead to an external CRM/API.
+ *   - ZOHO_SMTP_*: emails the team (LEAD_NOTIFICATION_EMAIL) and sends the
+ *     submitter a branded thank-you email (only if they gave an email).
+ *   - GOOGLE_SERVICE_ACCOUNT_... and GOOGLE_SHEET_ID: appends a row to a sheet.
+ * If nothing is configured, the lead is only logged — nothing is lost.
  */
 export async function POST(request: NextRequest) {
   let body: Partial<PreLaunchLead>;
@@ -75,6 +83,34 @@ export async function POST(request: NextRequest) {
     // No backend configured yet — record it so nothing is silently lost.
     console.info("[leads] SAMAYCARE_LEAD_API_URL not configured; logging lead only:", lead);
   }
+
+  const notificationEmail = process.env.LEAD_NOTIFICATION_EMAIL ?? process.env.ZOHO_SMTP_USER;
+  const sideEffects: Promise<unknown>[] = [appendLeadToSheet(lead)];
+
+  if (notificationEmail) {
+    const notification = buildLeadNotificationEmail(lead);
+    sideEffects.push(
+      sendEmail({
+        to: notificationEmail,
+        replyTo: lead.email,
+        ...notification,
+      })
+    );
+  }
+
+  if (lead.email) {
+    const thankYou = buildThankYouEmail(lead);
+    sideEffects.push(sendEmail({ to: lead.email, ...thankYou }));
+  }
+
+  // Best-effort: a Sheets or email outage should never block a lead that
+  // otherwise validated and (if configured) reached the CRM above.
+  const results = await Promise.allSettled(sideEffects);
+  results.forEach((result, index) => {
+    if (result.status === "rejected") {
+      console.error("[leads] side-effect failed", index, result.reason);
+    }
+  });
 
   return NextResponse.json({ ok: true });
 }

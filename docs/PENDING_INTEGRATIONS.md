@@ -1,20 +1,93 @@
 # Pending Integrations — On Hold
 
-Tracking doc for backend/analytics configuration that is intentionally
+Tracking doc for backend/integration configuration that is intentionally
 deferred. Nothing here blocks deployment — the site runs fully in its
 documented fallback mode until these are picked back up.
 
-## 1. Lead capture backend
+## 1. Lead capture backend (external CRM/API, optional)
 
 **Env vars:** `SAMAYCARE_LEAD_API_URL`, `SAMAYCARE_LEAD_API_KEY`
 **Status:** On hold — not yet configured on Vercel.
 **Current behavior:** `app/api/leads/route.ts` validates submissions
-server-side and logs each lead to the Vercel function logs. Nothing is lost,
-but nothing is persisted to a durable store (CRM, database, sheet, etc.).
-**To resume:** decide where leads should land (CRM, database, Google Sheet via
-an API, etc.), then set the two env vars on Vercel — no code changes needed.
+server-side and logs each lead to the Vercel function logs.
+**To resume:** decide where leads should land (CRM, database, etc.), then
+set the two env vars on Vercel — no code changes needed. Independent of
+this, the email and Sheets integrations below will fire as soon as *their*
+env vars are set, whether or not this one is configured.
 
-## 2. Analytics ingestion
+## 2. Lead notification email + thank-you email (Zoho Mail)
+
+**Code status:** Implemented in `app/api/leads/route.ts` via
+`lib/email/client.ts`, `lib/email/thankYouEmail.ts`, and
+`lib/email/leadNotificationEmail.ts`. Branded with the Samay Care logo and
+teal/navy palette (`lib/email/layout.ts`).
+**Env vars:** `ZOHO_SMTP_HOST`, `ZOHO_SMTP_PORT`, `ZOHO_SMTP_USER`,
+`ZOHO_SMTP_PASS`, `EMAIL_FROM_NAME`, `LEAD_NOTIFICATION_EMAIL`.
+**Status:** On hold — not yet configured on Vercel.
+**Current behavior:** every submission is logged only; no emails are sent.
+**To resume:**
+
+1. In Zoho Mail, go to **Settings → Mail Accounts → \<your address\> →
+   App Passwords** and generate one for "Samay Care Website" (a normal
+   Zoho login password will *not* work over SMTP if two-factor auth is on,
+   and app passwords are the safer option either way).
+2. Confirm your Zoho data center's SMTP host — `smtp.zoho.com` (global),
+   `smtp.zoho.in` (India), or `smtp.zoho.eu` (Europe). It's whichever
+   domain your Zoho Mail login page uses.
+3. On Vercel → Project → Settings → Environment Variables, set:
+   - `ZOHO_SMTP_HOST` — e.g. `smtp.zoho.in`
+   - `ZOHO_SMTP_PORT` — `465`
+   - `ZOHO_SMTP_USER` — the full Zoho Mail address to send from
+   - `ZOHO_SMTP_PASS` — the app password from step 1
+   - `LEAD_NOTIFICATION_EMAIL` — where new-lead alerts should land (can be
+     the same address as `ZOHO_SMTP_USER`, or a separate team inbox)
+   - `EMAIL_FROM_NAME` — optional, defaults to `Samay Care`
+4. Redeploy. No code changes needed.
+
+## 3. Google Sheets lead log
+
+**Code status:** Implemented in `lib/sheets.ts`, called from
+`app/api/leads/route.ts`.
+**Env vars:** `GOOGLE_SERVICE_ACCOUNT_EMAIL`,
+`GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY`, `GOOGLE_SHEET_ID`,
+`GOOGLE_SHEET_TAB_NAME`.
+**Status:** On hold — not yet configured on Vercel.
+**Current behavior:** every submission is logged only; no sheet is updated.
+**To resume:**
+
+1. Create (or open) a Google Cloud project at
+   console.cloud.google.com, then enable the **Google Sheets API** for it
+   (APIs & Services → Enable APIs and Services → search "Google Sheets
+   API" → Enable).
+2. Create a service account: **APIs & Services → Credentials → Create
+   Credentials → Service Account**. Give it any name (e.g.
+   "samaycare-leads"); no roles/permissions need to be granted at the
+   project level.
+3. Open the new service account → **Keys → Add Key → Create new key →
+   JSON**. This downloads a JSON file — treat it like a password, never
+   commit it to the repo.
+4. Create the destination Google Sheet (or use an existing one). Add a
+   header row matching `LEAD_SHEET_COLUMNS` in `lib/sheets.ts`:
+   `Submitted At, Name, Phone, Email, City, Relationship, Assistance Type,
+   Consent, Source, UTM Source, UTM Medium, UTM Campaign, UTM Content, UTM
+   Term, Landing Page, Referrer`.
+5. Click **Share** on the sheet and share it with the service account's
+   email address (from the JSON file's `client_email` field, looks like
+   `samaycare-leads@your-project.iam.gserviceaccount.com`) — give it
+   **Editor** access. This step is easy to miss and is the most common
+   reason appends fail with a permissions error.
+6. On Vercel → Project → Settings → Environment Variables, set:
+   - `GOOGLE_SERVICE_ACCOUNT_EMAIL` — the JSON file's `client_email`
+   - `GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY` — the JSON file's `private_key`,
+     pasted exactly as-is (Vercel handles the embedded `\n` sequences
+     correctly; the code un-escapes them at runtime either way)
+   - `GOOGLE_SHEET_ID` — from the sheet's URL:
+     `docs.google.com/spreadsheets/d/`**`THIS_PART`**`/edit`
+   - `GOOGLE_SHEET_TAB_NAME` — the tab/sheet name leads should append to
+     (defaults to `Leads` if unset)
+7. Redeploy. No code changes needed.
+
+## 4. Analytics ingestion
 
 **Env vars:** `SAMAYCARE_ANALYTICS_API_URL`, `SAMAYCARE_ANALYTICS_API_KEY`
 **Status:** On hold — not yet configured on Vercel.
