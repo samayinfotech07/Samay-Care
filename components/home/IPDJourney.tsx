@@ -84,9 +84,11 @@ export function IPDJourney() {
           <div
             className="scrollbar-hide flex snap-x snap-mandatory gap-0 overflow-x-auto pb-2"
             role="list"
+            tabIndex={0}
+            aria-label="IPD journey stages"
           >
             {ipdJourneyStages.map((stage, index) => (
-              <div key={stage.number} className="flex shrink-0 snap-start items-start">
+              <div key={stage.number} className="flex shrink-0 snap-start items-start" role="listitem">
                 <IpdCard
                   stage={stage}
                   width="w-[168px]"

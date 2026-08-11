@@ -82,9 +82,11 @@ export function ProblemSection() {
           <div
             className="scrollbar-hide flex snap-x snap-mandatory gap-0 overflow-x-auto pb-2"
             role="list"
+            tabIndex={0}
+            aria-label="Healthcare journey stages"
           >
             {journeyStages.map((stage, index) => (
-              <div key={stage.number} className="flex shrink-0 snap-start items-start">
+              <div key={stage.number} className="flex shrink-0 snap-start items-start" role="listitem">
                 <JourneyCard
                   stage={stage}
                   width="w-[152px]"
