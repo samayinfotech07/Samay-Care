@@ -119,13 +119,14 @@ export function IPDJourney() {
         </div>
 
         {/* Close the loop. */}
-        <div className="mx-auto mt-12 max-w-lg text-center sm:mt-14">
+        <div className="mx-auto mt-12 max-w-2xl text-center sm:mt-14">
           <p className="text-xl font-semibold text-navy sm:text-2xl">
             A complex hospital stay. A simpler journey.
           </p>
           <p className="mt-3 text-base leading-7 text-text-muted">
-            With a CareBuddy on the ground and family kept informed, Samay Care helps reduce the
-            non-clinical coordination burden around the IPD journey.
+            With a CareBuddy on the ground and family kept informed, Samay Care helps
+            <br className="hidden sm:inline" /> reduce the non-clinical coordination burden around
+            the IPD journey.
           </p>
           <p className="mt-4 text-sm font-semibold text-navy">
             You may not be at the hospital. You can still stay involved.
