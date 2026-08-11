@@ -23,7 +23,7 @@ export function OpdIpdJourney() {
       <Container className="text-center">
         <SectionHeading
           title="One CareBuddy. One connected healthcare journey."
-          maxWidthClassName="max-w-2xl sm:max-w-3xl"
+          maxWidthClassName="max-w-2xl sm:max-w-4xl lg:max-w-6xl"
         />
 
         <div className="mt-10">

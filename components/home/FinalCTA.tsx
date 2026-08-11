@@ -8,7 +8,7 @@ export function FinalCTA() {
   return (
     <section className="bg-teal-dark py-14 lg:py-16">
       <Container className="text-center">
-        <h2 className="mx-auto max-w-2xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+        <h2 className="mx-auto max-w-4xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">
           You may not be able to be there.
           <br />
           But your loved one doesn&rsquo;t have to be alone.
