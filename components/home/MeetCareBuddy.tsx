@@ -70,25 +70,25 @@ export function MeetCareBuddy() {
   return (
     <section id="meet-carebuddy" ref={sectionRef} className="bg-surface py-10 lg:py-14">
       <Container>
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[42%_1fr] lg:gap-10">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[38%_minmax(0,1fr)] lg:gap-8">
           <div className="min-w-0 lg:col-start-2 lg:row-start-1">
             <span className="inline-flex items-center rounded-full bg-teal-light px-3 py-1 text-xs font-semibold uppercase tracking-wide text-teal-dark">
               Meet Your CareBuddy
             </span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-navy sm:text-4xl lg:text-[38px]">
+            <h2 className="mt-3 text-4xl font-extrabold tracking-tight text-navy sm:text-5xl lg:text-[46px]">
               Meet your <span className="text-teal">CareBuddy.</span>
             </h2>
-            <p className="mt-3 text-lg font-semibold text-navy">
+            <p className="mt-2 text-lg font-semibold text-navy">
               A trusted person on the ground when you can&apos;t be there.
             </p>
-            <p className="mt-2 max-w-xl text-base leading-7 text-text-muted">
+            <p className="mt-1.5 max-w-xl text-base leading-7 text-text-muted">
               Your CareBuddy helps your loved one navigate the non-clinical healthcare journey while
               keeping the family informed every step of the way.
             </p>
           </div>
 
           <div
-            className={`relative mx-auto aspect-[373/484] w-full max-w-md overflow-hidden rounded-3xl border border-border bg-white shadow-[0_20px_60px_rgba(16,43,58,0.1)] lg:col-start-1 lg:row-start-1 lg:row-span-2 lg:mx-0 lg:max-w-none lg:sticky lg:top-24 ${
+            className={`relative mx-auto aspect-[53/62] w-full max-w-md overflow-hidden rounded-3xl border border-border bg-white shadow-[0_20px_60px_rgba(16,43,58,0.1)] lg:col-start-1 lg:row-start-1 lg:row-span-2 lg:mx-0 lg:max-w-none lg:sticky lg:top-24 ${
               hasRevealed ? "fade-up" : ""
             }`}
           >
@@ -96,7 +96,7 @@ export function MeetCareBuddy() {
               src="/images/hero-carebuddy.jpg"
               alt="A CareBuddy in a teal polo shirt with an ID badge walking alongside a patient in a hospital corridor"
               fill
-              sizes="(min-width: 1024px) 42vw, 100vw"
+              sizes="(min-width: 1024px) 38vw, 100vw"
               className="object-cover"
             />
             <div className="absolute inset-x-4 bottom-4 sm:inset-x-6 sm:bottom-6">
@@ -107,9 +107,12 @@ export function MeetCareBuddy() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-start-2 lg:row-start-2">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 xl:grid-cols-3 xl:items-start lg:col-start-2 lg:row-start-2">
             {careBuddyCapabilities.map((capability, index) => (
-              <div key={capability.key} className={capability.key === "update" ? "sm:col-span-2" : ""}>
+              <div
+                key={capability.key}
+                className={capability.key === "update" ? "sm:col-span-2 xl:col-span-1" : ""}
+              >
                 <CapabilityCard
                   capability={capability}
                   revealed={hasRevealed}
@@ -121,15 +124,15 @@ export function MeetCareBuddy() {
         </div>
 
         <div
-          className={`mx-auto mt-10 flex flex-col gap-6 rounded-3xl bg-teal-soft p-6 sm:mt-12 sm:p-8 lg:flex-row lg:items-center lg:gap-8 ${
+          className={`mx-auto mt-6 flex flex-col gap-4 rounded-3xl bg-teal-soft p-5 sm:mt-8 sm:p-6 lg:flex-row lg:items-center lg:gap-6 ${
             hasRevealed ? "fade-up" : ""
           }`}
         >
-          <div className="flex items-center gap-4 lg:shrink-0">
-            <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-teal">
-              <Users className="h-7 w-7 text-white" strokeWidth={2} aria-hidden="true" />
+          <div className="flex items-center gap-3 lg:shrink-0">
+            <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-teal">
+              <Users className="h-6 w-6 text-white" strokeWidth={2} aria-hidden="true" />
             </span>
-            <p className="text-lg font-semibold leading-snug text-navy sm:text-xl">
+            <p className="text-base font-semibold leading-snug text-navy sm:text-lg">
               You may not be there.
               <br />
               <span className="text-teal">But you can still stay involved.</span>
@@ -153,12 +156,12 @@ export function MeetCareBuddy() {
                 <div key={node.label} className="flex items-center gap-2 sm:gap-3">
                   <div className="flex shrink-0 flex-col items-center gap-1.5">
                     <span
-                      className={`inline-flex h-12 w-12 items-center justify-center rounded-full ${
+                      className={`inline-flex h-10 w-10 items-center justify-center rounded-full ${
                         node.tone === "outline" ? "border-2 border-teal bg-white" : "bg-teal"
                       }`}
                     >
                       <Icon
-                        className={`h-5 w-5 ${node.tone === "outline" ? "text-teal" : "text-white"}`}
+                        className={`h-4 w-4 ${node.tone === "outline" ? "text-teal" : "text-white"}`}
                         strokeWidth={2}
                         aria-hidden="true"
                       />
@@ -179,7 +182,7 @@ export function MeetCareBuddy() {
           </div>
         </div>
 
-        <div className="mx-auto mt-10 max-w-lg text-center sm:mt-12">
+        <div className="mx-auto mt-8 max-w-lg text-center sm:mt-10">
           <p className="text-lg font-semibold text-navy sm:text-xl">
             One journey. One CareBuddy. <span className="text-teal">Less hassle.</span>
           </p>
@@ -215,19 +218,19 @@ function CapabilityCard({
 
   return (
     <div
-      className={`h-full min-w-0 overflow-hidden rounded-2xl border border-teal/15 bg-white p-6 shadow-[0_1px_3px_rgba(16,43,58,0.06)] ${
+      className={`h-full min-w-0 overflow-hidden rounded-2xl border border-teal/15 bg-white p-5 shadow-[0_1px_3px_rgba(16,43,58,0.06)] ${
         revealed ? "fade-up" : ""
       }`}
       style={revealed ? { animationDelay: `${delayMs}ms` } : undefined}
     >
-      <div className={isUpdate ? "flex flex-col gap-6 sm:flex-row sm:items-start" : ""}>
+      <div className={isUpdate ? "flex flex-col gap-4 sm:flex-row sm:items-start xl:flex-col" : ""}>
         <div className={isUpdate ? "min-w-0 sm:flex-1" : ""}>
-          <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-teal">
-            <Icon className="h-6 w-6 text-white" strokeWidth={2} aria-hidden="true" />
+          <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-teal">
+            <Icon className="h-5 w-5 text-white" strokeWidth={2} aria-hidden="true" />
           </span>
-          <h3 className="mt-4 text-lg font-bold text-teal">{capability.title}</h3>
+          <h3 className="mt-3 text-lg font-bold text-teal">{capability.title}</h3>
           <p className="mt-1 text-[15px] font-semibold text-navy">{capability.headline}</p>
-          <p className="mt-2 text-sm leading-6 text-text-muted">{capability.description}</p>
+          <p className="mt-1.5 text-sm leading-6 text-text-muted">{capability.description}</p>
 
           {capability.key === "accompany" ? <AccompanyModes /> : null}
           {capability.key === "navigate" ? <NavigateSteps /> : null}
@@ -299,45 +302,45 @@ function NavigateSteps() {
 function PhoneMockup() {
   return (
     <div
-      className="mx-auto w-[240px] shrink-0 rounded-[1.75rem] border-4 border-navy bg-white p-2 shadow-[0_20px_45px_rgba(16,43,58,0.18)] sm:mx-0"
+      className="mx-auto w-[172px] shrink-0 rounded-[1.4rem] border-[3px] border-navy bg-white p-1.5 shadow-[0_16px_36px_rgba(16,43,58,0.18)] sm:mx-0 xl:mx-auto"
       aria-hidden="true"
     >
-      <div className="flex items-center justify-between px-2 pb-1.5 text-[9px] font-medium text-navy">
+      <div className="flex items-center justify-between px-1.5 pb-1 text-[7px] font-medium text-navy">
         <span>9:41</span>
-        <span className="flex items-center gap-1">
-          <Signal className="h-2.5 w-2.5" />
-          <Wifi className="h-2.5 w-2.5" />
+        <span className="flex items-center gap-0.5">
+          <Signal className="h-2 w-2" />
+          <Wifi className="h-2 w-2" />
         </span>
       </div>
-      <div className="rounded-2xl bg-surface p-3">
+      <div className="rounded-xl bg-surface p-2">
         <div className="flex items-center justify-between">
-          <p className="text-[13px] font-bold text-navy">Samay Care</p>
-          <Bell className="h-3.5 w-3.5 text-text-muted" />
+          <p className="text-[10px] font-bold text-navy">Samay Care</p>
+          <Bell className="h-2.5 w-2.5 text-text-muted" />
         </div>
-        <p className="mt-2 text-[11px] font-semibold text-navy">Journey Update</p>
-        <ul className="mt-2 space-y-2">
+        <p className="mt-1.5 text-[8px] font-semibold text-navy">Journey Update</p>
+        <ul className="mt-1.5 space-y-1.5">
           {journeyUpdatePreview.map((item) => (
-            <li key={item.label} className="flex items-center justify-between gap-2 text-[10px]">
-              <span className="flex min-w-0 items-center gap-1.5">
+            <li key={item.label} className="flex flex-col gap-0.5 text-[7px]">
+              <span className="flex min-w-0 items-center gap-1">
                 {item.status === "done" ? (
-                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-teal" />
+                  <CheckCircle2 className="h-2.5 w-2.5 shrink-0 text-teal" />
                 ) : item.status === "current" ? (
-                  <span className="inline-flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-teal">
-                    <span className="h-1.5 w-1.5 rounded-full bg-white" />
+                  <span className="inline-flex h-2.5 w-2.5 shrink-0 items-center justify-center rounded-full bg-teal">
+                    <span className="h-1 w-1 rounded-full bg-white" />
                   </span>
                 ) : (
-                  <Circle className="h-3.5 w-3.5 shrink-0 text-border" />
+                  <Circle className="h-2.5 w-2.5 shrink-0 text-border" />
                 )}
                 <span
-                  className={`truncate ${
+                  className={
                     item.status === "upcoming" ? "text-text-muted" : "font-medium text-navy"
-                  }`}
+                  }
                 >
                   {item.label}
                 </span>
               </span>
               <span
-                className={`shrink-0 ${
+                className={`pl-3.5 ${
                   item.status === "current" ? "font-semibold text-teal" : "text-text-muted"
                 }`}
               >
@@ -346,9 +349,9 @@ function PhoneMockup() {
             </li>
           ))}
         </ul>
-        <p className="mt-3 text-center text-[10px] font-semibold text-teal">View All Updates</p>
+        <p className="mt-2 text-center text-[8px] font-semibold text-teal">View All Updates</p>
       </div>
-      <p className="mt-2 text-center text-[9px] text-text-muted">
+      <p className="mt-1.5 text-center text-[7px] leading-tight text-text-muted">
         Conceptual preview &mdash; illustrative journey updates.
       </p>
     </div>
