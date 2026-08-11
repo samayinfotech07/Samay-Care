@@ -2,6 +2,7 @@ import { Hero } from "@/components/home/Hero";
 import { ProblemSection } from "@/components/home/ProblemSection";
 import { OpdIpdJourney } from "@/components/home/OpdIpdJourney";
 import { MeetCareBuddy } from "@/components/home/MeetCareBuddy";
+import { OpdJourney } from "@/components/home/OpdJourney";
 import { BookingModes } from "@/components/home/BookingModes";
 import { CareBuddyServices } from "@/components/home/CareBuddyServices";
 import { FamilyConnection } from "@/components/home/FamilyConnection";
@@ -22,6 +23,7 @@ export default function Home() {
       <ProblemSection />
       <OpdIpdJourney />
       <MeetCareBuddy />
+      <OpdJourney />
       <BookingModes />
       <CareBuddyServices />
       <FamilyConnection />

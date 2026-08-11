@@ -1,6 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { opdJourney, ipdJourney } from "@/data/opdIpdJourney";
+import { ipdJourney } from "@/data/opdIpdJourney";
 
 function JourneyRow({ steps }: { steps: string[] }) {
   return (
@@ -22,29 +22,13 @@ export function OpdIpdJourney() {
     <section id="opd-ipd-journey" className="py-10 lg:py-14">
       <Container className="text-center">
         <SectionHeading
-          title="One CareBuddy. One connected healthcare journey."
+          title="When healthcare becomes more than a hospital visit."
+          subtitle="One CareBuddy stays with the journey — from admission through discharge and beyond."
           maxWidthClassName="max-w-2xl sm:max-w-4xl lg:max-w-6xl"
         />
 
         <div className="mt-10">
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-teal">OPD Visits</h3>
-          <div className="mt-4">
-            <JourneyRow steps={opdJourney} />
-          </div>
-          <p className="sr-only">{opdJourney.join(" → ")}</p>
-        </div>
-
-        <p className="mx-auto mt-6 max-w-md text-sm font-medium text-navy">
-          CareBuddy assists. Family stays informed.
-        </p>
-
-        <div className="mt-10 border-t border-border pt-10">
-          <h3 className="text-2xl font-semibold tracking-tight text-navy sm:text-3xl">
-            When healthcare becomes more than a hospital visit.
-          </h3>
-          <div className="mt-6">
-            <JourneyRow steps={ipdJourney} />
-          </div>
+          <JourneyRow steps={ipdJourney} />
           <p className="sr-only">{ipdJourney.join(" → ")}</p>
           <p className="mx-auto mt-6 max-w-md text-sm text-text-muted">
             CareBuddy provides non-clinical assistance throughout. Clinical decisions remain with
