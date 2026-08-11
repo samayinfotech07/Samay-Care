@@ -6,7 +6,6 @@ import {
   Bell,
   Building2,
   CheckCircle2,
-  ChevronRight,
   Circle,
   ClipboardCheck,
   FileText,
@@ -218,17 +217,17 @@ function CapabilityCard({
 
   return (
     <div
-      className={`h-full min-w-0 overflow-hidden rounded-2xl border border-teal/15 bg-white p-5 shadow-[0_1px_3px_rgba(16,43,58,0.06)] ${
+      className={`h-full min-w-0 overflow-hidden rounded-2xl border border-teal/20 bg-white p-5 ${
         revealed ? "fade-up" : ""
       }`}
       style={revealed ? { animationDelay: `${delayMs}ms` } : undefined}
     >
       <div className={isUpdate ? "flex flex-col gap-4 sm:flex-row sm:items-start xl:flex-col" : ""}>
         <div className={isUpdate ? "min-w-0 sm:flex-1" : ""}>
-          <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-teal">
-            <Icon className="h-5 w-5 text-white" strokeWidth={2} aria-hidden="true" />
+          <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-teal">
+            <Icon className="h-6 w-6 text-white" strokeWidth={2} aria-hidden="true" />
           </span>
-          <h3 className="mt-3 text-lg font-bold text-teal">{capability.title}</h3>
+          <h3 className="mt-3 text-xl font-bold text-teal">{capability.title}</h3>
           <p className="mt-1 text-[15px] font-semibold text-navy">{capability.headline}</p>
           <p className="mt-1.5 text-sm leading-6 text-text-muted">{capability.description}</p>
 
@@ -265,36 +264,22 @@ function AccompanyModes() {
 
 function NavigateSteps() {
   return (
-    <div className="relative mt-4">
-      <div
-        className="flex w-full items-start gap-1 overflow-x-auto pb-1"
-        role="list"
-        tabIndex={0}
-        aria-label="Non-clinical journey steps a CareBuddy helps coordinate"
-      >
-        {navigateJourneySteps.map((step, index) => {
-          const Icon = navigateIcons[step.icon];
-          return (
-            <div key={step.label} className="flex items-start gap-1" role="listitem">
-              <div className="flex w-12 shrink-0 flex-col items-center gap-1 text-center">
-                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-teal-light">
-                  <Icon className="h-4 w-4 text-teal" strokeWidth={2} aria-hidden="true" />
-                </span>
-                <span className="text-[9px] font-medium leading-tight text-text-muted">
-                  {step.label}
-                </span>
-              </div>
-              {index < navigateJourneySteps.length - 1 ? (
-                <ChevronRight className="mt-2 h-3 w-3 shrink-0 text-teal/40" aria-hidden="true" />
-              ) : null}
-            </div>
-          );
-        })}
-      </div>
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0 right-0 w-6 bg-gradient-to-l from-white to-transparent"
-      />
+    <div
+      className="mt-4 grid grid-cols-3 gap-x-2 gap-y-3"
+      role="list"
+      aria-label="Non-clinical journey steps a CareBuddy helps coordinate"
+    >
+      {navigateJourneySteps.map((step) => {
+        const Icon = navigateIcons[step.icon];
+        return (
+          <div key={step.label} className="flex flex-col items-center gap-1 text-center" role="listitem">
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-teal-light">
+              <Icon className="h-4 w-4 text-teal" strokeWidth={2} aria-hidden="true" />
+            </span>
+            <span className="text-[9px] font-medium leading-tight text-text-muted">{step.label}</span>
+          </div>
+        );
+      })}
     </div>
   );
 }
