@@ -165,7 +165,7 @@ function JourneyCard({
       style={revealed ? { animationDelay: `${delayMs}ms` } : undefined}
     >
       <div className="flex flex-col items-center">
-        <span className="mb-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-teal text-[10px] font-semibold text-white">
+        <span className="mb-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-teal text-[11px] font-bold text-white">
           {stage.number}
         </span>
         <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-teal/25 bg-teal-light">
@@ -173,7 +173,7 @@ function JourneyCard({
         </span>
       </div>
       <h3 className="mt-2.5 text-xs font-semibold leading-tight text-navy">{stage.title}</h3>
-      <p className="mt-1 text-[11px] leading-snug text-text-muted">{stage.description}</p>
+      <p className="mt-1 text-[12px] leading-snug text-text-muted">{stage.description}</p>
     </div>
   );
 }
@@ -202,7 +202,7 @@ function JourneyTimelineNode({
         />
       ) : null}
       <div className="flex shrink-0 flex-col items-center">
-        <span className="mb-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-teal text-[10px] font-semibold text-white">
+        <span className="mb-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-teal text-[11px] font-bold text-white">
           {stage.number}
         </span>
         <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-teal/25 bg-teal-light">
