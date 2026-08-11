@@ -5,7 +5,7 @@ import { familyUpdates } from "@/data/familyUpdates";
 
 export function FamilyConnection() {
   return (
-    <section className="bg-surface py-10 lg:py-14">
+    <section className="py-10 lg:py-14">
       <Container className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
         <div>
           <SectionHeading

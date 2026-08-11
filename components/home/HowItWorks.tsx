@@ -7,7 +7,7 @@ const icons = { phone: Phone, userCheck: UserCheck, car: Car, shieldCheck: Shiel
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-10 lg:py-14">
+    <section id="how-it-works" className="bg-surface py-10 lg:py-14">
       <Container>
         <SectionHeading title="How Booking a CareBuddy Works" />
 
