@@ -109,8 +109,8 @@ export function MeetCareBuddy() {
           ))}
         </div>
 
-        <div className="mx-auto mt-10 max-w-2xl rounded-3xl bg-navy px-8 py-10 text-center sm:mt-12">
-          <p className="text-xl font-semibold text-white sm:text-2xl">
+        <div className="mx-auto mt-10 max-w-3xl rounded-3xl bg-navy px-8 py-10 text-center sm:mt-12">
+          <p className="text-lg font-semibold text-white sm:text-xl">
             You may not be there. But you can still stay involved.
           </p>
           <p className="mt-3 text-sm leading-6 text-white/75 sm:text-base">
