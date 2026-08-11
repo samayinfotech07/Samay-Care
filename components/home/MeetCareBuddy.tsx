@@ -80,7 +80,7 @@ export function MeetCareBuddy() {
             <p className="mt-2 text-lg font-semibold text-navy">
               A trusted person on the ground when you can&apos;t be there.
             </p>
-            <p className="mt-1.5 max-w-xl text-base leading-7 text-text-muted">
+            <p className="mt-1.5 text-base leading-7 text-text-muted">
               Your CareBuddy helps your loved one navigate the non-clinical healthcare journey while
               keeping the family informed every step of the way.
             </p>
