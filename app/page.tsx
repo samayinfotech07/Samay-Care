@@ -1,6 +1,6 @@
 import { Hero } from "@/components/home/Hero";
 import { ProblemSection } from "@/components/home/ProblemSection";
-import { OpdIpdJourney } from "@/components/home/OpdIpdJourney";
+import { IPDJourney } from "@/components/home/IPDJourney";
 import { MeetCareBuddy } from "@/components/home/MeetCareBuddy";
 import { OpdJourney } from "@/components/home/OpdJourney";
 import { BookingModes } from "@/components/home/BookingModes";
@@ -21,7 +21,7 @@ export default function Home() {
     <>
       <Hero />
       <ProblemSection />
-      <OpdIpdJourney />
+      <IPDJourney />
       <MeetCareBuddy />
       <OpdJourney />
       <BookingModes />
