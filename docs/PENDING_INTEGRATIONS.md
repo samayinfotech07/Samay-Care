@@ -78,14 +78,26 @@ teal/navy palette (`lib/email/layout.ts`).
    reason appends fail with a permissions error.
 6. On Vercel → Project → Settings → Environment Variables, set:
    - `GOOGLE_SERVICE_ACCOUNT_EMAIL` — the JSON file's `client_email`
-   - `GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY` — the JSON file's `private_key`,
-     pasted exactly as-is (Vercel handles the embedded `\n` sequences
-     correctly; the code un-escapes them at runtime either way)
+   - `GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY` — the JSON file's `private_key`.
+     **This is the one field that reliably goes wrong** — the JSON looks
+     like `"private_key": "-----BEGIN PRIVATE KEY-----\nMIIE...\n-----END
+     PRIVATE KEY-----\n"`, and it's easy to accidentally paste the
+     surrounding double quotes too, or to have an editor "helpfully"
+     convert the literal `\n` text into real line breaks (usually
+     harmless) or strip them entirely (not harmless). The code normalizes
+     both a stray pair of quotes and literal `\n` text either way, but
+     the value must still contain the full key. The safest way to get an
+     exact copy: run `python3 -c "import json,sys; print(json.load(open('service-account.json'))['private_key'], end='')"`
+     against the downloaded file and copy *that* output — it's the exact
+     private_key value with no ambiguity about quotes or escaping.
    - `GOOGLE_SHEET_ID` — from the sheet's URL:
      `docs.google.com/spreadsheets/d/`**`THIS_PART`**`/edit`
    - `GOOGLE_SHEET_TAB_NAME` — the tab/sheet name leads should append to
      (defaults to `Leads` if unset)
 7. Redeploy. No code changes needed.
+8. If appends still fail, check the Vercel function logs for `[sheets]` —
+   a malformed key now logs a clear message instead of the cryptic
+   OpenSSL `DECODER routines::unsupported` error.
 
 ## 4. Market-validation poll backend (`/poll`)
 

@@ -8,7 +8,7 @@ export function PollSuccess() {
         <CheckCircle2 className="h-7 w-7 text-teal" aria-hidden="true" />
       </span>
       <h1 className="mt-5 text-2xl font-semibold text-navy">Thank you for sharing your experience.</h1>
-      <p className="mx-auto mt-3 max-w-md text-base leading-7 text-text-muted">
+      <p className="mx-auto mt-3 text-base leading-7 text-text-muted">
         Your feedback will help us understand the real challenges families face during healthcare
         journeys and help shape Samay Care.
       </p>

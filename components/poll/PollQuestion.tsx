@@ -1,5 +1,30 @@
+import {
+  Briefcase,
+  Building2,
+  CalendarX,
+  ClipboardList,
+  HeartHandshake,
+  IndianRupee,
+  MapPin,
+  ShieldCheck,
+  Timer,
+  Users,
+} from "lucide-react";
 import { POLL_EMERGENCY_NOTE, type PollQuestion as PollQuestionType } from "@/data/pollQuestions";
 import { PollOption } from "./PollOption";
+
+const questionIcons = {
+  building2: Building2,
+  users: Users,
+  clipboardList: ClipboardList,
+  briefcase: Briefcase,
+  calendarX: CalendarX,
+  timer: Timer,
+  heartHandshake: HeartHandshake,
+  mapPin: MapPin,
+  shieldCheck: ShieldCheck,
+  indianRupee: IndianRupee,
+};
 
 export function PollQuestion({
   question,
@@ -14,10 +39,14 @@ export function PollQuestion({
   const atMax = Boolean(
     question.type === "multi" && question.maxSelections && selectedIds.length >= question.maxSelections
   );
+  const Icon = questionIcons[question.icon];
 
   return (
     <div>
-      <h1 className="text-xl font-semibold leading-snug text-navy sm:text-2xl">{question.question}</h1>
+      <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-teal-light">
+        <Icon className="h-6 w-6 text-teal" strokeWidth={2} aria-hidden="true" />
+      </span>
+      <h1 className="mt-3 text-xl font-semibold leading-snug text-navy sm:text-2xl">{question.question}</h1>
       {question.supportingText ? (
         <p className="mt-2 text-sm text-text-muted">{question.supportingText}</p>
       ) : null}

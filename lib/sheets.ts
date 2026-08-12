@@ -9,10 +9,28 @@ function isConfigured(): boolean {
   );
 }
 
+/**
+ * A pasted PEM private key commonly arrives mangled in one of a few ways —
+ * wrapped in a stray pair of quotes (from copying the JSON field including
+ * its quotes), or with the "\n" line breaks still escaped as literal
+ * backslash-n text (Vercel env vars are single-line, so that's how the key
+ * has to be stored). Node's OpenSSL DECODER rejects a malformed PEM with an
+ * opaque "unsupported" error rather than a clear "bad key" message, so this
+ * normalizes both cases rather than trusting the raw value.
+ */
+function normalizePrivateKey(raw: string): string {
+  let key = raw.trim();
+  if (
+    (key.startsWith('"') && key.endsWith('"')) ||
+    (key.startsWith("'") && key.endsWith("'"))
+  ) {
+    key = key.slice(1, -1);
+  }
+  return key.replace(/\\r\\n/g, "\n").replace(/\\n/g, "\n").trim();
+}
+
 function getAuth() {
-  // Vercel env vars are single-line, so a PEM private key is stored with
-  // literal "\n" escapes that need converting back to real newlines.
-  const privateKey = (process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY ?? "").replace(/\\n/g, "\n");
+  const privateKey = normalizePrivateKey(process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY ?? "");
   return new google.auth.JWT({
     email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
     key: privateKey,
@@ -30,6 +48,16 @@ function getAuth() {
 async function appendRowToSheet(tabName: string, row: unknown[], logLabel: string): Promise<boolean> {
   if (!isConfigured()) {
     console.info(`[sheets] Google Sheets not configured; skipping append for ${logLabel}`);
+    return false;
+  }
+
+  const normalizedKey = normalizePrivateKey(process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY ?? "");
+  if (!normalizedKey.startsWith("-----BEGIN PRIVATE KEY-----")) {
+    console.error(
+      "[sheets] GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY doesn't look like a valid PEM key after " +
+        "normalization (expected it to start with '-----BEGIN PRIVATE KEY-----'). Re-check the " +
+        "value on Vercel — see docs/PENDING_INTEGRATIONS.md for exactly how to copy it."
+    );
     return false;
   }
 

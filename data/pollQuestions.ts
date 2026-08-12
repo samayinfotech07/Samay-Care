@@ -3,6 +3,18 @@ export type PollOption = {
   label: string;
 };
 
+export type PollQuestionIcon =
+  | "building2"
+  | "users"
+  | "clipboardList"
+  | "briefcase"
+  | "calendarX"
+  | "timer"
+  | "heartHandshake"
+  | "mapPin"
+  | "shieldCheck"
+  | "indianRupee";
+
 export type PollQuestion = {
   id: string;
   number: number;
@@ -12,6 +24,13 @@ export type PollQuestion = {
   required: boolean;
   maxSelections?: number;
   options: PollOption[];
+  /**
+   * Small topic icon shown above the question so respondents can place it
+   * at a glance — no image-generation tool is available in this
+   * environment, so this uses the same icon-badge visual language already
+   * used for journey stages elsewhere on the site instead of a photo.
+   */
+  icon: PollQuestionIcon;
 };
 
 /**
@@ -24,6 +43,7 @@ export type PollQuestion = {
 export const pollQuestions: PollQuestion[] = [
   {
     id: "q1_hospitalVisitFrequency",
+    icon: "building2",
     number: 1,
     question: "How often do you or your family members visit a hospital?",
     type: "single",
@@ -38,6 +58,7 @@ export const pollQuestions: PollQuestion[] = [
   },
   {
     id: "q2_usualCompanion",
+    icon: "users",
     number: 2,
     question: "Who usually accompanies an elderly/family member to the hospital?",
     type: "single",
@@ -53,6 +74,7 @@ export const pollQuestions: PollQuestion[] = [
   },
   {
     id: "q3_hospitalChallenges",
+    icon: "clipboardList",
     number: 3,
     question: "What are the biggest challenges during a hospital visit?",
     supportingText: "Select up to 3.",
@@ -73,6 +95,7 @@ export const pollQuestions: PollQuestion[] = [
   },
   {
     id: "q4_workCommitmentImpact",
+    icon: "briefcase",
     number: 4,
     question:
       "Have you ever cancelled or postponed work/personal commitments to accompany a family member to the hospital?",
@@ -87,6 +110,7 @@ export const pollQuestions: PollQuestion[] = [
   },
   {
     id: "q5_postponedHospitalVisit",
+    icon: "calendarX",
     number: 5,
     question:
       "Have you ever postponed a hospital visit because nobody was available to accompany the patient?",
@@ -101,6 +125,7 @@ export const pollQuestions: PollQuestion[] = [
   },
   {
     id: "q6_opdVisitDuration",
+    icon: "timer",
     number: 6,
     question:
       "Typically, how much time does a hospital OPD visit take, including waiting and formalities?",
@@ -116,6 +141,7 @@ export const pollQuestions: PollQuestion[] = [
   },
   {
     id: "q7_careBuddyUsefulness",
+    icon: "heartHandshake",
     number: 7,
     question:
       "Imagine you could book a trained CareBuddy from Samay Care who accompanies your family member from home or hospital and helps manage registration, queues, navigation, consultation, billing, medicines and tests. How useful would this be?",
@@ -131,6 +157,7 @@ export const pollQuestions: PollQuestion[] = [
   },
   {
     id: "q8_useSituations",
+    icon: "mapPin",
     number: 8,
     question: "In which situations would you use Samay Care?",
     supportingText: "Select all that apply.",
@@ -149,6 +176,7 @@ export const pollQuestions: PollQuestion[] = [
   },
   {
     id: "q9_trustFactors",
+    icon: "shieldCheck",
     number: 9,
     question: "What would make you comfortable trusting a CareBuddy with your family member?",
     supportingText: "Select up to 3.",
@@ -168,6 +196,7 @@ export const pollQuestions: PollQuestion[] = [
   },
   {
     id: "q10_willingnessToPay",
+    icon: "indianRupee",
     number: 10,
     question: "How much would you be willing to pay for a 2–3 hour Samay Care hospital assistance service?",
     supportingText: "For research purposes, what would you be willing to pay?",

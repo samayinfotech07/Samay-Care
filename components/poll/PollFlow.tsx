@@ -163,7 +163,7 @@ export function PollFlow() {
 
   if (status === "success") {
     return (
-      <Container className="max-w-2xl py-14 lg:py-20">
+      <Container className="max-w-4xl py-14 lg:py-20">
         <PollSuccess />
       </Container>
     );
