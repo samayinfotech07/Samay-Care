@@ -62,6 +62,9 @@ export async function POST(request: NextRequest) {
   }
 
   const candidate: Partial<PollSubmission> = {
+    name: sanitizeText(body.name),
+    email: sanitizeText(body.email),
+    phone: sanitizeText(body.phone),
     q1_hospitalVisitFrequency: sanitizeText(body.q1_hospitalVisitFrequency),
     q2_usualCompanion: sanitizeText(body.q2_usualCompanion),
     q3_hospitalChallenges: sanitizeArray(body.q3_hospitalChallenges),
@@ -82,6 +85,9 @@ export async function POST(request: NextRequest) {
 
   const submission: PollSubmission = {
     surveyVersion: "samay-care-market-validation-v1",
+    name: candidate.name!,
+    email: candidate.email!,
+    phone: candidate.phone || undefined,
     q1_hospitalVisitFrequency: candidate.q1_hospitalVisitFrequency!,
     q2_usualCompanion: candidate.q2_usualCompanion!,
     q3_hospitalChallenges: candidate.q3_hospitalChallenges!,

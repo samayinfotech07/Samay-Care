@@ -33,6 +33,9 @@ export type BookingMode = "meet-at-hospital" | "accompany-from-home";
 
 export type PollSubmission = {
   surveyVersion: "samay-care-market-validation-v1";
+  name: string;
+  email: string;
+  phone?: string;
   q1_hospitalVisitFrequency: string;
   q2_usualCompanion: string;
   q3_hospitalChallenges: string[];

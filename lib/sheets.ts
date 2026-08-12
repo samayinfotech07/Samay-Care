@@ -77,6 +77,9 @@ export async function appendPollResponseToSheet(submission: PollSubmission): Pro
   const row = [
     submission.submittedAt,
     submission.surveyVersion,
+    submission.name,
+    submission.email,
+    submission.phone ?? "",
     submission.q1_hospitalVisitFrequency,
     submission.q2_usualCompanion,
     submission.q3_hospitalChallenges.join(", "),
@@ -125,6 +128,9 @@ export const LEAD_SHEET_COLUMNS = [
 export const POLL_SHEET_COLUMNS = [
   "Submitted At",
   "Survey Version",
+  "Name",
+  "Email",
+  "Phone",
   "Q1 Hospital Visit Frequency",
   "Q2 Usual Companion",
   "Q3 Hospital Challenges",

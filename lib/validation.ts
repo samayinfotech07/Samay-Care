@@ -4,8 +4,8 @@ export type FieldErrors = Partial<
   Record<"name" | "phone" | "city" | "email" | "relationship" | "assistanceType" | "consent", string>
 >;
 
-const INDIAN_MOBILE_REGEX = /^[6-9]\d{9}$/;
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+export const INDIAN_MOBILE_REGEX = /^[6-9]\d{9}$/;
+export const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function normalizePhone(raw: string): string {
   let digits = raw.replace(/[\s-]/g, "").replace(/^\+/, "");

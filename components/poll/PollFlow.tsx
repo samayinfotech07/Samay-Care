@@ -3,11 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { pollQuestions } from "@/data/pollQuestions";
-import { validatePollQuestionAnswer } from "@/lib/pollValidation";
+import { validatePollContact, validatePollQuestionAnswer, type PollFieldErrors } from "@/lib/pollValidation";
 import { submitPollResponse } from "@/lib/poll-service";
 import { track, getUtmParams } from "@/lib/analytics";
 import type { PollSubmission } from "@/lib/types";
 import { PollIntro } from "./PollIntro";
+import { PollContactStep, type PollContactValues } from "./PollContactStep";
 import { PollProgress } from "./PollProgress";
 import { PollQuestion } from "./PollQuestion";
 import { PollNavigation } from "./PollNavigation";
@@ -18,7 +19,11 @@ import { PollError } from "./PollError";
 type Answers = Record<string, string | string[]>;
 
 const TOTAL_QUESTIONS = pollQuestions.length;
-const PROFILE_STEP = TOTAL_QUESTIONS + 1;
+const CONTACT_STEP = 1;
+const FIRST_QUESTION_STEP = CONTACT_STEP + 1;
+const PROFILE_STEP = FIRST_QUESTION_STEP + TOTAL_QUESTIONS;
+
+const initialContact: PollContactValues = { name: "", email: "", phone: "" };
 
 const initialProfile: PollProfileValues = {
   city: "",
@@ -30,6 +35,8 @@ const initialProfile: PollProfileValues = {
 
 export function PollFlow() {
   const [step, setStep] = useState(0);
+  const [contact, setContact] = useState<PollContactValues>(initialContact);
+  const [contactErrors, setContactErrors] = useState<PollFieldErrors>({});
   const [answers, setAnswers] = useState<Answers>({});
   const [profile, setProfile] = useState<PollProfileValues>(initialProfile);
   const [consentError, setConsentError] = useState<string | undefined>(undefined);
@@ -45,8 +52,8 @@ export function PollFlow() {
   useEffect(() => {
     if (step === hasTrackedViewRef.current) return;
     hasTrackedViewRef.current = step;
-    if (step >= 1 && step <= TOTAL_QUESTIONS) {
-      track("poll_question_view", { questionId: pollQuestions[step - 1].id, step });
+    if (step >= FIRST_QUESTION_STEP && step < PROFILE_STEP) {
+      track("poll_question_view", { questionId: pollQuestions[step - FIRST_QUESTION_STEP].id, step });
     }
   }, [step]);
 
@@ -62,7 +69,22 @@ export function PollFlow() {
 
   function handleStart() {
     track("poll_start");
-    setStep(1);
+    setStep(CONTACT_STEP);
+  }
+
+  function updateContact<K extends keyof PollContactValues>(key: K, value: PollContactValues[K]) {
+    setContact((prev) => ({ ...prev, [key]: value }));
+    if (contactErrors[key]) setContactErrors((prev) => ({ ...prev, [key]: undefined }));
+  }
+
+  function handleContactNext() {
+    const errors = validatePollContact(contact);
+    if (Object.keys(errors).length > 0) {
+      setContactErrors(errors);
+      return;
+    }
+    setContactErrors({});
+    setStep(FIRST_QUESTION_STEP);
   }
 
   function updateAnswer(questionId: string, value: string | string[]) {
@@ -76,13 +98,13 @@ export function PollFlow() {
   }
 
   function goBack() {
-    const question = pollQuestions[step - 1];
-    track("poll_question_back", { step, questionId: step <= TOTAL_QUESTIONS ? question?.id : undefined });
+    const question = pollQuestions[step - FIRST_QUESTION_STEP];
+    track("poll_question_back", { step, questionId: question?.id });
     setStep((s) => Math.max(0, s - 1));
   }
 
   function goNext() {
-    const question = pollQuestions[step - 1];
+    const question = pollQuestions[step - FIRST_QUESTION_STEP];
     track("poll_question_next", { step, questionId: question?.id });
     setStep((s) => s + 1);
   }
@@ -103,6 +125,9 @@ export function PollFlow() {
     const utm = getUtmParams();
     const submission: PollSubmission = {
       surveyVersion: "samay-care-market-validation-v1",
+      name: contact.name.trim(),
+      email: contact.email.trim(),
+      phone: contact.phone.trim() || undefined,
       q1_hospitalVisitFrequency: (answers.q1_hospitalVisitFrequency as string) ?? "",
       q2_usualCompanion: (answers.q2_usualCompanion as string) ?? "",
       q3_hospitalChallenges: (answers.q3_hospitalChallenges as string[]) ?? [],
@@ -163,6 +188,21 @@ export function PollFlow() {
     );
   }
 
+  if (step === CONTACT_STEP) {
+    return (
+      <Container className="max-w-2xl py-10 lg:py-14">
+        <div className="rounded-2xl border border-border bg-white p-6 shadow-[0_1px_2px_rgba(16,43,58,0.04)] sm:p-8">
+          <PollContactStep
+            values={contact}
+            errors={contactErrors}
+            onChange={updateContact}
+            onNext={handleContactNext}
+          />
+        </div>
+      </Container>
+    );
+  }
+
   if (step === PROFILE_STEP) {
     return (
       <Container className="max-w-2xl py-10 lg:py-14">
@@ -171,7 +211,7 @@ export function PollFlow() {
           <PollProfileStep
             values={profile}
             onChange={updateProfile}
-            onBack={() => setStep(TOTAL_QUESTIONS)}
+            onBack={() => setStep(PROFILE_STEP - 1)}
             onSubmit={handleSubmit}
             submitting={status === "submitting"}
             consentError={consentError}
@@ -181,13 +221,13 @@ export function PollFlow() {
     );
   }
 
-  const question = pollQuestions[step - 1];
+  const question = pollQuestions[step - FIRST_QUESTION_STEP];
   const currentValue = answers[question.id];
   const nextDisabled = Boolean(validatePollQuestionAnswer(question.id, currentValue));
 
   return (
     <Container className="max-w-2xl py-10 lg:py-14">
-      <PollProgress current={step} total={TOTAL_QUESTIONS} />
+      <PollProgress current={step - FIRST_QUESTION_STEP + 1} total={TOTAL_QUESTIONS} />
       <div className="mt-6 rounded-2xl border border-border bg-white p-6 shadow-[0_1px_2px_rgba(16,43,58,0.04)] sm:p-8">
         <PollQuestion
           question={question}

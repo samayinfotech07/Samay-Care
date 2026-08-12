@@ -1,9 +1,41 @@
 import { pollQuestions } from "@/data/pollQuestions";
+import { EMAIL_REGEX, INDIAN_MOBILE_REGEX, normalizePhone } from "./validation";
 import type { PollSubmission } from "./types";
 
-export type PollFieldErrors = Record<string, string>;
+export type PollFieldErrors = Record<string, string | undefined>;
 
 type PollAnswerValue = string | string[];
+
+export type PollContactValues = { name: string; email: string; phone: string };
+
+/**
+ * Validates the contact step (Name/Email required, Phone optional) shown
+ * right after the intro, before Q1.
+ */
+export function validatePollContact(input: PollContactValues): PollFieldErrors {
+  const errors: PollFieldErrors = {};
+
+  const name = input.name.trim();
+  if (!name) {
+    errors.name = "Please enter your full name.";
+  } else if (name.length < 2) {
+    errors.name = "Please enter a valid name.";
+  }
+
+  const email = input.email.trim();
+  if (!email) {
+    errors.email = "Please enter your email address.";
+  } else if (!EMAIL_REGEX.test(email)) {
+    errors.email = "Please enter a valid email address.";
+  }
+
+  const phone = normalizePhone(input.phone ?? "");
+  if (phone && !INDIAN_MOBILE_REGEX.test(phone)) {
+    errors.phone = "Please enter a valid 10-digit Indian mobile number.";
+  }
+
+  return errors;
+}
 
 export function isPollQuestionAnswered(value: PollAnswerValue | undefined): boolean {
   if (Array.isArray(value)) return value.length > 0;
@@ -42,7 +74,13 @@ export function validatePollQuestionAnswer(
 export function validatePollSubmission(
   input: Partial<PollSubmission>
 ): PollFieldErrors {
-  const errors: PollFieldErrors = {};
+  const errors: PollFieldErrors = {
+    ...validatePollContact({
+      name: input.name ?? "",
+      email: input.email ?? "",
+      phone: input.phone ?? "",
+    }),
+  };
 
   for (const question of pollQuestions) {
     const value = (input as Record<string, PollAnswerValue | undefined>)[question.id];
