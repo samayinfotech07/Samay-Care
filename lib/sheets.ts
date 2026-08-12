@@ -29,10 +29,22 @@ function normalizePrivateKey(raw: string): string {
   return key.replace(/\\r\\n/g, "\n").replace(/\\n/g, "\n").trim();
 }
 
+function normalizeEmail(raw: string): string {
+  let email = raw.trim();
+  if (
+    (email.startsWith('"') && email.endsWith('"')) ||
+    (email.startsWith("'") && email.endsWith("'"))
+  ) {
+    email = email.slice(1, -1).trim();
+  }
+  return email;
+}
+
 function getAuth() {
   const privateKey = normalizePrivateKey(process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY ?? "");
+  const email = normalizeEmail(process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL ?? "");
   return new google.auth.JWT({
-    email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    email,
     key: privateKey,
     scopes: ["https://www.googleapis.com/auth/spreadsheets"],
   });
@@ -59,6 +71,15 @@ async function appendRowToSheet(tabName: string, row: unknown[], logLabel: strin
         "value on Vercel — see docs/PENDING_INTEGRATIONS.md for exactly how to copy it."
     );
     return false;
+  }
+
+  const normalizedEmail = normalizeEmail(process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL ?? "");
+  if (!/^[^\s@]+@[^\s@]+\.iam\.gserviceaccount\.com$/.test(normalizedEmail)) {
+    console.error(
+      `[sheets] GOOGLE_SERVICE_ACCOUNT_EMAIL ("${normalizedEmail}") doesn't look like a service ` +
+        "account email (expected it to end with '.iam.gserviceaccount.com'). Double-check it " +
+        "matches the JSON file's client_email exactly."
+    );
   }
 
   try {
