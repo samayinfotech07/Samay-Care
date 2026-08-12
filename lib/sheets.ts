@@ -53,11 +53,17 @@ function getAuth() {
 /**
  * Appends a single row to the given tab of the configured Google Sheet, if
  * GOOGLE_SERVICE_ACCOUNT_EMAIL/PRIVATE_KEY/GOOGLE_SHEET_ID are set (see
- * .env.example); otherwise logs and no-ops. The sheet's own header row is
- * not managed here — set it up once by hand to match the relevant
- * `*_SHEET_COLUMNS` export below.
+ * .env.example); otherwise logs and no-ops. If the tab's first row is
+ * empty, writes `headers` there first — so the very first successful
+ * write sets up the sheet's header row automatically, and every write
+ * after that just appends data normally.
  */
-async function appendRowToSheet(tabName: string, row: unknown[], logLabel: string): Promise<boolean> {
+async function appendRowToSheet(
+  tabName: string,
+  row: unknown[],
+  logLabel: string,
+  headers: string[]
+): Promise<boolean> {
   if (!isConfigured()) {
     console.info(`[sheets] Google Sheets not configured; skipping append for ${logLabel}`);
     return false;
@@ -84,8 +90,25 @@ async function appendRowToSheet(tabName: string, row: unknown[], logLabel: strin
 
   try {
     const sheets = google.sheets({ version: "v4", auth: getAuth() });
+    const spreadsheetId = process.env.GOOGLE_SHEET_ID;
+
+    const firstCell = await sheets.spreadsheets.values.get({
+      spreadsheetId,
+      range: `${tabName}!A1`,
+    });
+    const hasHeaderRow = Boolean(firstCell.data.values?.length);
+
+    if (!hasHeaderRow) {
+      await sheets.spreadsheets.values.update({
+        spreadsheetId,
+        range: `${tabName}!A1`,
+        valueInputOption: "USER_ENTERED",
+        requestBody: { values: [headers] },
+      });
+    }
+
     await sheets.spreadsheets.values.append({
-      spreadsheetId: process.env.GOOGLE_SHEET_ID,
+      spreadsheetId,
       range: `${tabName}!A1`,
       valueInputOption: "USER_ENTERED",
       insertDataOption: "INSERT_ROWS",
@@ -118,7 +141,7 @@ export async function appendLeadToSheet(lead: PreLaunchLead): Promise<boolean> {
     lead.landingPage ?? "",
     lead.referrer ?? "",
   ];
-  return appendRowToSheet(tabName, row, lead.name);
+  return appendRowToSheet(tabName, row, lead.name, LEAD_SHEET_COLUMNS);
 }
 
 export async function appendPollResponseToSheet(submission: PollSubmission): Promise<boolean> {
@@ -151,8 +174,10 @@ export async function appendPollResponseToSheet(submission: PollSubmission): Pro
     submission.utmTerm ?? "",
     submission.landingPage ?? "",
     submission.referrer ?? "",
+    submission.q11_currentAge,
+    submission.q12_city,
   ];
-  return appendRowToSheet(tabName, row, "poll response");
+  return appendRowToSheet(tabName, row, "poll response", POLL_SHEET_COLUMNS);
 }
 
 export const LEAD_SHEET_COLUMNS = [
@@ -202,4 +227,6 @@ export const POLL_SHEET_COLUMNS = [
   "UTM Term",
   "Landing Page",
   "Referrer",
+  "Q11 Current Age",
+  "Q12 City",
 ];

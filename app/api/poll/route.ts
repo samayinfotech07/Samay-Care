@@ -75,6 +75,8 @@ export async function POST(request: NextRequest) {
     q8_useSituations: sanitizeArray(body.q8_useSituations),
     q9_trustFactors: sanitizeArray(body.q9_trustFactors),
     q10_willingnessToPay: sanitizeText(body.q10_willingnessToPay),
+    q11_currentAge: sanitizeText(body.q11_currentAge),
+    q12_city: sanitizeText(body.q12_city),
     consent: Boolean(body.consent),
   };
 
@@ -98,6 +100,8 @@ export async function POST(request: NextRequest) {
     q8_useSituations: candidate.q8_useSituations!,
     q9_trustFactors: candidate.q9_trustFactors!,
     q10_willingnessToPay: candidate.q10_willingnessToPay!,
+    q11_currentAge: candidate.q11_currentAge!,
+    q12_city: candidate.q12_city!,
     city: sanitizeText(body.city) || undefined,
     relationship: sanitizeText(body.relationship) || undefined,
     workingStatus: sanitizeText(body.workingStatus) || undefined,

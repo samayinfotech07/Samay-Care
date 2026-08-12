@@ -138,6 +138,8 @@ export function PollFlow() {
       q8_useSituations: (answers.q8_useSituations as string[]) ?? [],
       q9_trustFactors: (answers.q9_trustFactors as string[]) ?? [],
       q10_willingnessToPay: (answers.q10_willingnessToPay as string) ?? "",
+      q11_currentAge: (answers.q11_currentAge as string) ?? "",
+      q12_city: (answers.q12_city as string) ?? "",
       city: profile.city.trim() || undefined,
       relationship: profile.relationship || undefined,
       workingStatus: profile.workingStatus || undefined,

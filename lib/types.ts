@@ -46,6 +46,8 @@ export type PollSubmission = {
   q8_useSituations: string[];
   q9_trustFactors: string[];
   q10_willingnessToPay: string;
+  q11_currentAge: string;
+  q12_city: string;
   city?: string;
   relationship?: string;
   workingStatus?: string;

@@ -13,7 +13,9 @@ export type PollQuestionIcon =
   | "heartHandshake"
   | "mapPin"
   | "shieldCheck"
-  | "indianRupee";
+  | "indianRupee"
+  | "user"
+  | "landmark";
 
 export type PollQuestion = {
   id: string;
@@ -209,6 +211,35 @@ export const pollQuestions: PollQuestion[] = [
       { id: "750-1000", label: "₹750–1,000" },
       { id: "1000-plus", label: "₹1,000+" },
       { id: "would-not-pay", label: "I would not pay for this service" },
+    ],
+  },
+  {
+    id: "q11_currentAge",
+    icon: "user",
+    number: 11,
+    question: "What is your current age?",
+    type: "single",
+    required: true,
+    options: [
+      { id: "18-25", label: "18–25" },
+      { id: "26-35", label: "26–35" },
+      { id: "36-45", label: "36–45" },
+      { id: "46-60", label: "46–60" },
+      { id: "60-plus", label: "60+" },
+    ],
+  },
+  {
+    id: "q12_city",
+    icon: "landmark",
+    number: 12,
+    question: "Which city are you in?",
+    type: "single",
+    required: true,
+    options: [
+      { id: "new-delhi", label: "New Delhi" },
+      { id: "mumbai", label: "Mumbai" },
+      { id: "bangalore", label: "Bangalore" },
+      { id: "chandigarh", label: "Chandigarh" },
     ],
   },
 ];

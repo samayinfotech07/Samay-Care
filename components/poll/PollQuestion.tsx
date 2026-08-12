@@ -5,9 +5,11 @@ import {
   ClipboardList,
   HeartHandshake,
   IndianRupee,
+  Landmark,
   MapPin,
   ShieldCheck,
   Timer,
+  User,
   Users,
 } from "lucide-react";
 import { POLL_EMERGENCY_NOTE, type PollQuestion as PollQuestionType } from "@/data/pollQuestions";
@@ -24,6 +26,8 @@ const questionIcons = {
   mapPin: MapPin,
   shieldCheck: ShieldCheck,
   indianRupee: IndianRupee,
+  user: User,
+  landmark: Landmark,
 };
 
 export function PollQuestion({
