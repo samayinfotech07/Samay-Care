@@ -30,3 +30,31 @@ export type PreLaunchLead = {
 };
 
 export type BookingMode = "meet-at-hospital" | "accompany-from-home";
+
+export type PollSubmission = {
+  surveyVersion: "samay-care-market-validation-v1";
+  q1_hospitalVisitFrequency: string;
+  q2_usualCompanion: string;
+  q3_hospitalChallenges: string[];
+  q4_workCommitmentImpact: string;
+  q5_postponedHospitalVisit: string;
+  q6_opdVisitDuration: string;
+  q7_careBuddyUsefulness: string;
+  q8_useSituations: string[];
+  q9_trustFactors: string[];
+  q10_willingnessToPay: string;
+  city?: string;
+  relationship?: string;
+  workingStatus?: string;
+  parentsSameCity?: string;
+  consent: boolean;
+  source?: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  utmContent?: string;
+  utmTerm?: string;
+  landingPage?: string;
+  referrer?: string;
+  submittedAt: string;
+};

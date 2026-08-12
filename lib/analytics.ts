@@ -19,7 +19,17 @@ export type AnalyticsEvent =
   | "service_interest_selected"
   | "assistance_type_selected"
   | "partner_cta_click"
-  | "footer_contact_click";
+  | "footer_contact_click"
+  | "poll_page_view"
+  | "poll_start"
+  | "poll_question_view"
+  | "poll_question_answered"
+  | "poll_question_back"
+  | "poll_question_next"
+  | "poll_form_abandon"
+  | "poll_submit"
+  | "poll_submit_success"
+  | "poll_submit_error";
 
 export type AnalyticsPayload = Record<string, string | number | boolean | undefined>;
 

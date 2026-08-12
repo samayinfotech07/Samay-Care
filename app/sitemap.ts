@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://samaycare.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/privacy", "/terms"];
+  const routes = ["", "/privacy", "/terms", "/poll"];
 
   return routes.map((route) => ({
     url: `${siteUrl}${route}`,

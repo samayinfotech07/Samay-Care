@@ -25,9 +25,9 @@ export function Footer() {
 
           {footerColumns.map((column) => (
             <div key={column.id} id={column.id}>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-navy">
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-navy">
                 {column.heading}
-              </h3>
+              </h2>
               <ul className="mt-4 space-y-3">
                 {column.links.map((link) => (
                   <li key={link.label}>
@@ -44,7 +44,7 @@ export function Footer() {
           ))}
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-navy">Contact Us</h3>
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-navy">Contact Us</h2>
             <ul className="mt-4 space-y-3">
               {contactDetails.map((contact) => (
                 <li key={contact.label} className="flex items-center gap-2.5">

@@ -87,7 +87,34 @@ teal/navy palette (`lib/email/layout.ts`).
      (defaults to `Leads` if unset)
 7. Redeploy. No code changes needed.
 
-## 4. Analytics ingestion
+## 4. Market-validation poll backend (`/poll`)
+
+**Code status:** Implemented in `app/api/poll/route.ts`. Reuses the same
+Google Sheets service account as §3 above (if configured) but appends to a
+separate tab, and independently supports forwarding to an external
+API/CRM.
+**Env vars:** `SAMAYCARE_POLL_API_URL`, `SAMAYCARE_POLL_API_KEY`,
+`GOOGLE_POLL_SHEET_TAB_NAME` (plus the `GOOGLE_SERVICE_ACCOUNT_*` /
+`GOOGLE_SHEET_ID` vars from §3 — no separate service account needed).
+**Status:** On hold — not yet configured on Vercel.
+**Current behavior:** every poll response is logged to the Vercel function
+logs only.
+**To resume:**
+
+1. If you already set up the Google service account for lead capture (§3),
+   just add a new tab to that same spreadsheet named `PollResponses` (or
+   whatever you set `GOOGLE_POLL_SHEET_TAB_NAME` to), with a header row
+   matching `POLL_SHEET_COLUMNS` in `lib/sheets.ts` — the service account
+   already has edit access to the whole spreadsheet, so no new sharing
+   step is needed.
+2. If you haven't set up Sheets at all yet, follow §3's steps first, then
+   come back and add the poll tab from step 1.
+3. Alternatively (or in addition), set `SAMAYCARE_POLL_API_URL` /
+   `SAMAYCARE_POLL_API_KEY` to forward responses to a separate analytics
+   endpoint or CRM.
+4. Redeploy. No code changes needed.
+
+## 5. Analytics ingestion
 
 **Env vars:** `SAMAYCARE_ANALYTICS_API_URL`, `SAMAYCARE_ANALYTICS_API_KEY`
 **Status:** On hold — not yet configured on Vercel.
