@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Mail, Phone, Globe as GlobeIcon } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/site/Logo";
@@ -31,12 +32,12 @@ export function Footer() {
               <ul className="mt-4 space-y-3">
                 {column.links.map((link) => (
                   <li key={link.label}>
-                    <a
+                    <Link
                       href={link.href}
                       className="text-sm text-text-muted hover:text-teal-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

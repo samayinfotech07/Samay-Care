@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -35,25 +36,25 @@ export function Header() {
       }`}
     >
       <Container className="flex items-center justify-between py-3.5">
-        <a href="#top" className="rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal">
+        <Link href="/#top" className="rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal">
           <Logo />
-        </a>
+        </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-6 xl:flex">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="whitespace-nowrap text-sm font-medium text-text hover:text-teal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="hidden xl:block">
           <Button
-            href="#prelaunch-form"
+            href="/#prelaunch-form"
             size="md"
             onClick={() => track("hero_interest_click", { location: "header" })}
           >
@@ -77,17 +78,17 @@ export function Header() {
         <div id="mobile-menu" className="border-t border-border bg-white xl:hidden">
           <Container className="flex flex-col gap-1 py-4">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
                 className="rounded-lg px-2 py-3 text-base font-medium text-text hover:bg-teal-light hover:text-teal-dark"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <Button
-              href="#prelaunch-form"
+              href="/#prelaunch-form"
               className="mt-2 w-full"
               onClick={() => {
                 setIsMenuOpen(false);
