@@ -4,6 +4,34 @@ import { Container } from "@/components/ui/Container";
 export const metadata: Metadata = {
   title: "Terms & Conditions",
   description: "Terms governing use of the Samay Care pre-launch website.",
+  alternates: {
+    canonical: "/terms",
+  },
+  openGraph: {
+    type: "website",
+    url: "/terms",
+    title: "Terms & Conditions",
+    description: "Terms governing use of the Samay Care pre-launch website.",
+    images: [
+      {
+        url: "/images/samay-care-social-share.png",
+        width: 1536,
+        height: 1024,
+        alt: "Samay Care — Your loved one is not alone. Neither are you.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms & Conditions",
+    description: "Terms governing use of the Samay Care pre-launch website.",
+    images: [
+      {
+        url: "/images/samay-care-social-share.png",
+        alt: "Samay Care — Your loved one is not alone. Neither are you.",
+      },
+    ],
+  },
 };
 
 export default function TermsPage() {

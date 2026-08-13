@@ -4,6 +4,34 @@ import { Container } from "@/components/ui/Container";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "How Samay Care collects and uses the information you share with us during pre-launch.",
+  alternates: {
+    canonical: "/privacy",
+  },
+  openGraph: {
+    type: "website",
+    url: "/privacy",
+    title: "Privacy Policy",
+    description: "How Samay Care collects and uses the information you share with us during pre-launch.",
+    images: [
+      {
+        url: "/images/samay-care-social-share.png",
+        width: 1536,
+        height: 1024,
+        alt: "Samay Care — Your loved one is not alone. Neither are you.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy",
+    description: "How Samay Care collects and uses the information you share with us during pre-launch.",
+    images: [
+      {
+        url: "/images/samay-care-social-share.png",
+        alt: "Samay Care — Your loved one is not alone. Neither are you.",
+      },
+    ],
+  },
 };
 
 export default function PrivacyPage() {

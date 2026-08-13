@@ -26,7 +26,7 @@ export function renderEmailShell({
   previewText: string;
   bodyHtml: string;
 }): string {
-  const logoUrl = `${siteUrl()}/brand/logo.png`;
+  const logoUrl = `${siteUrl()}/brand/logo-email.png`;
 
   return `<!doctype html>
 <html lang="en">

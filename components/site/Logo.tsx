@@ -3,7 +3,7 @@ import Image from "next/image";
 export function Logo() {
   return (
     <Image
-      src="/brand/logo-full.png"
+      src="/brand/logo.png"
       alt="Samay Care — Making Healthcare Convenient"
       width={1442}
       height={350}

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s | Samay Care",
   },
   description:
-    "Samay Care simplifies the OPD and IPD journey with trusted CareBuddy assistance, helping patients and families navigate hospitals and stay informed throughout the healthcare journey.",
+    "Samay Care simplifies the complex OPD & IPD journey for patients and their attendants with trusted CareBuddies who accompany patients, help navigate the healthcare journey and keep families informed.",
   alternates: {
     canonical: "/",
   },
@@ -28,11 +28,25 @@ export const metadata: Metadata = {
     siteName: "Samay Care",
     title: "Samay Care — Making Healthcare Convenient",
     description: "Your loved one is not alone. Neither are you — meet CareBuddy, coming soon to your city.",
+    images: [
+      {
+        url: "/images/samay-care-social-share.png",
+        width: 1536,
+        height: 1024,
+        alt: "Samay Care — Your loved one is not alone. Neither are you.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Samay Care — Making Healthcare Convenient",
     description: "Your loved one is not alone. Neither are you — meet CareBuddy, coming soon to your city.",
+    images: [
+      {
+        url: "/images/samay-care-social-share.png",
+        alt: "Samay Care — Your loved one is not alone. Neither are you.",
+      },
+    ],
   },
   robots: {
     index: true,
