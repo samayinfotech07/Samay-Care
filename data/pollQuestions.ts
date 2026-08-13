@@ -205,8 +205,6 @@ export const pollQuestions: PollQuestion[] = [
     type: "single",
     required: true,
     options: [
-      { id: "200-300", label: "₹200–300" },
-      { id: "300-500", label: "₹300–500" },
       { id: "500-750", label: "₹500–750" },
       { id: "750-1000", label: "₹750–1,000" },
       { id: "1000-plus", label: "₹1,000+" },
