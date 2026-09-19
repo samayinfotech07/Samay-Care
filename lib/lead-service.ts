@@ -7,7 +7,9 @@ export type LeadSubmissionResult =
 /**
  * Client-facing lead service. Always talks to our own /api/leads route —
  * never directly to a third-party CRM/API — so backend credentials stay
- * server-side. See docs/SAMAY_CARE_PHASE1_WEBSITE_CLAUDE_CODE.md §17.
+ * server-side. See docs/archive/SAMAY_CARE_PHASE1_WEBSITE_CLAUDE_CODE.md §17
+ * (superseded by docs/SAMAY_CARE_PHASE1_WEBSITE_V2.md for positioning, but
+ * this implementation detail still holds).
  */
 export async function submitPreLaunchLead(
   lead: PreLaunchLead

@@ -6,8 +6,16 @@ Router), TypeScript, and Tailwind CSS v4.
 
 Source of truth for brand, messaging and page structure lives in `docs/`:
 
-- `docs/SAMAY_CARE_BRAND_GUIDELINES.md`
-- `docs/SAMAY_CARE_PHASE1_WEBSITE_CLAUDE_CODE.md`
+- `docs/SAMAY_CARE_BRAND_GUIDELINES.md` — brand, voice, color/type tokens
+- `docs/SAMAY_CARE_PHASE1_WEBSITE_V2.md` — current homepage positioning and
+  page structure (supersedes the archived V1 spec below)
+- `docs/SAMAY_CARE_MARKET_VALIDATION_POLL.md` — `/poll` spec
+- `docs/PENDING_INTEGRATIONS.md` — backend/integration config on hold
+
+`docs/archive/` holds the original (V1) Phase 1 spec, kept for the
+implementation details it still documents (see comments in
+`lib/lead-service.ts` and `components/home/PreLaunchVisual.tsx`) even though
+its product positioning was replaced by V2.
 
 ## Getting started
 

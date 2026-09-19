@@ -4,7 +4,7 @@ import { Bike } from "lucide-react";
 /**
  * Conceptual "CareBuddy on the way" visualization, cropped directly from the
  * approved reference design (docs/Samay Care PreLaunch.png) rather than
- * redrawn, per docs/SAMAY_CARE_PHASE1_WEBSITE_CLAUDE_CODE.md §19 — no real
+ * redrawn, per docs/archive/SAMAY_CARE_PHASE1_WEBSITE_CLAUDE_CODE.md §19 — no real
  * location data, purely illustrative. Further cropped to drop the car
  * illustration baked into that source photo; the bike tag below stands in
  * for it as a real HTML element since the vehicle can't be edited inside
