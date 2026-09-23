@@ -4,9 +4,22 @@ export const footerColumns = [
     heading: "Quick Links",
     links: [
       { label: "Why Samay Care", href: "/#why-samay-care" },
-      { label: "CareBuddy", href: "/#meet-carebuddy" },
-      { label: "How It Works", href: "/#how-it-works" },
-      { label: "About Us", href: "/#about-us" },
+      { label: "CareBuddy", href: "/carebuddy" },
+      { label: "How It Works", href: "/how-it-works" },
+      { label: "About Us", href: "/about" },
+      { label: "FAQ", href: "/faq" },
+    ],
+  },
+  {
+    id: "services",
+    heading: "Services",
+    links: [
+      { label: "Hospital Companion", href: "/services/hospital-companion" },
+      { label: "Patient Companion", href: "/services/patient-companion" },
+      { label: "OPD Assistance", href: "/services/opd-assistance" },
+      { label: "Hospital Navigation", href: "/services/hospital-navigation" },
+      { label: "Delhi NCR", href: "/locations/delhi-ncr" },
+      { label: "Other Cities", href: "/cities" },
     ],
   },
   {

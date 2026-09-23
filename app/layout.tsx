@@ -16,11 +16,11 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://samaycare.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Samay Care | Healthcare Convenience Platform | CareBuddy Assistance",
+    default: "Samay Care | Hospital Companion & Patient Assistance in Delhi NCR",
     template: "%s | Samay Care",
   },
   description:
-    "Samay Care simplifies the complex OPD & IPD journey for patients and their attendants with trusted CareBuddies who accompany patients, help navigate the healthcare journey and keep families informed.",
+    "Samay Care makes healthcare convenient with CareBuddies who help patients and families navigate hospital visits, OPD appointments, queues, paperwork and follow-ups across Delhi NCR.",
   alternates: {
     canonical: "/",
   },
@@ -67,6 +67,13 @@ const organizationJsonLd = {
     "Samay Care is a healthcare convenience platform. CareBuddy is the human assistance service provided through Samay Care — CareBuddies accompany patients and help navigate the non-clinical OPD/IPD journey, and Samay Care helps families stay informed when they cannot be physically present.",
 };
 
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Samay Care",
+  url: siteUrl,
+};
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
@@ -76,6 +83,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         <a
           href="#main-content"

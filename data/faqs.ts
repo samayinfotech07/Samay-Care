@@ -31,4 +31,34 @@ export const faqs = [
     question: "Is Samay Care available in my city?",
     answer: "Samay Care is launching city by city. Visitors can submit their interest to help prioritize launches.",
   },
+  {
+    question: "Which cities does Samay Care currently serve?",
+    answer:
+      "Samay Care is launching first in Delhi NCR — Delhi, Gurugram (Gurgaon), Noida and Faridabad. Requests are welcome from other Indian cities too, and help us decide where to launch next.",
+  },
+  {
+    question: "Can a CareBuddy help with hospital registration and queues?",
+    answer:
+      "Yes. Registration, tokens and queue assistance are part of the non-clinical, practical support a CareBuddy can provide during a hospital visit.",
+  },
+  {
+    question: "Can a CareBuddy accompany an elderly parent to the hospital?",
+    answer:
+      "Yes. CareBuddies can accompany family members of any age, including elderly parents, either by meeting them at the hospital or accompanying them from home.",
+  },
+  {
+    question: "How do I book a CareBuddy?",
+    answer:
+      "Samay Care is in pre-launch. You can share your interest and city through our request form, and we'll be in touch as service becomes available in your area.",
+  },
+  {
+    question: "How much does a CareBuddy cost?",
+    answer:
+      "Pricing hasn't been published yet — it will be shared as Samay Care launches. Submitting your interest doesn't commit you to anything.",
+  },
+  {
+    question: "Can I request a CareBuddy for someone else, like a parent?",
+    answer:
+      "Yes. Many requests come from a family member arranging assistance on behalf of a parent or relative rather than for themselves.",
+  },
 ];

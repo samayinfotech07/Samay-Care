@@ -14,7 +14,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-white text-text">
       <Container className="py-10 lg:py-12">
-        <div className="grid gap-8 lg:grid-cols-[1.6fr_1fr_1fr_1fr_1.2fr]">
+        <div className="grid gap-8 lg:grid-cols-[1.4fr_0.9fr_0.9fr_0.9fr_0.9fr_1.1fr]">
           <div>
             <Logo />
             <p className="mt-3 text-sm font-medium text-text-muted">Making Healthcare Convenient.</p>
