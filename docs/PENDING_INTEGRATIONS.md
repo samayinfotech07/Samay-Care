@@ -126,7 +126,7 @@ logs only.
    endpoint or CRM.
 4. Redeploy. No code changes needed.
 
-## 5. Analytics ingestion
+## 5. Analytics ingestion (custom event pipeline)
 
 **Env vars:** `SAMAYCARE_ANALYTICS_API_URL`, `SAMAYCARE_ANALYTICS_API_KEY`
 **Status:** On hold — not yet configured on Vercel.
@@ -137,6 +137,25 @@ them to the console instead).
 **To resume:** pick an analytics destination, then set the two env vars — no
 code changes needed.
 
+Not to be confused with Google Analytics (§6 below), which is a separate,
+already-configured pipeline — this one is for forwarding the site's own
+named `track()` events to a future internal/product-analytics endpoint.
+
+## 6. Google Analytics 4
+
+**Env var:** `NEXT_PUBLIC_GA_MEASUREMENT_ID`
+**Status:** Configured and live on Vercel (measurement ID `G-EVVERWKPT0`).
+**Code:** `components/site/GoogleAnalytics.tsx` loads `gtag.js` site-wide
+with `send_page_view: false`; `components/site/GoogleAnalyticsPageview.tsx`
+fires `page_view` manually on every route change (`usePathname`), since
+`next/link` client-side navigation between `/`, `/poll`, `/privacy` and
+`/terms` wouldn't otherwise register as separate pageviews under GA4's
+default automatic-pageview behavior. Both are rendered from
+`app/layout.tsx`, so every route is covered without per-page wiring.
+Verified live on samaycare.com (gtag script + measurement ID present in the
+served HTML on both `/` and `/poll`).
+
 ## Already configured
 
 - `NEXT_PUBLIC_SITE_URL` — set on Vercel.
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID` — set on Vercel (see §6).
