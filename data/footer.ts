@@ -36,7 +36,7 @@ export const footerColumns = [
     heading: "Support",
     links: [
       { label: "Help Center", href: "/#prelaunch-form" },
-      { label: "Contact Us", href: "/#prelaunch-form" },
+      { label: "Contact Us", href: "/contact" },
       { label: "Terms & Conditions", href: "/terms" },
       { label: "Privacy Policy", href: "/privacy" },
     ],
