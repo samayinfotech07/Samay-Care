@@ -69,7 +69,7 @@ export function Footer() {
 
         <div className="mt-6 flex flex-col gap-4 border-t border-border pt-6 text-sm text-text-muted sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Samay Care. All rights reserved.</p>
-          <p>Currently in pre-launch across India.</p>
+          <p>Now live in Delhi NCR. Expanding across India.</p>
         </div>
       </Container>
     </footer>

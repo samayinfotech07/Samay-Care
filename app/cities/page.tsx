@@ -15,21 +15,21 @@ const otherCities = ["Mumbai", "Bengaluru", "Hyderabad", "Chennai", "Pune", "Kol
 export const metadata: Metadata = {
   title: { absolute: "Samay Care Across India | Request a CareBuddy in Your City" },
   description:
-    "Samay Care is launching first in Delhi NCR and accepts requests from other Indian cities. Tell us where you need a CareBuddy and we'll explore availability.",
+    "Samay Care is now live in Delhi NCR and accepts requests from other Indian cities. Tell us where you need a CareBuddy and we'll explore availability.",
   alternates: { canonical: "/cities" },
   openGraph: {
     type: "website",
     url: "/cities",
     title: "Samay Care Across India | Request a CareBuddy in Your City",
     description:
-      "Samay Care is launching first in Delhi NCR and accepts requests from other Indian cities. Tell us where you need a CareBuddy and we'll explore availability.",
+      "Samay Care is now live in Delhi NCR and accepts requests from other Indian cities. Tell us where you need a CareBuddy and we'll explore availability.",
     images: [{ ...socialImage, width: 1536, height: 1024 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Samay Care Across India | Request a CareBuddy in Your City",
     description:
-      "Samay Care is launching first in Delhi NCR and accepts requests from other Indian cities. Tell us where you need a CareBuddy and we'll explore availability.",
+      "Samay Care is now live in Delhi NCR and accepts requests from other Indian cities. Tell us where you need a CareBuddy and we'll explore availability.",
     images: [socialImage],
   },
 };
@@ -44,8 +44,8 @@ export default function CitiesPage() {
           Need a CareBuddy in Another City?
         </h1>
         <p className="mt-4 text-base leading-7 text-text-muted">
-          Samay Care is currently focused on Delhi NCR. If you need practical support during a hospital
-          visit in another Indian city, you can still submit a request. As our CareBuddy network expands,
+          Samay Care is live in Delhi NCR. If you need practical support during a hospital visit in
+          another Indian city, you can still submit a request. As our CareBuddy network expands,
           we&apos;ll use these requests to understand where families need support next.
         </p>
 
@@ -56,7 +56,7 @@ export default function CitiesPage() {
         </div>
 
         <div className="mt-12 border-t border-border pt-8">
-          <h2 className="text-lg font-semibold text-navy">Launching first in Delhi NCR</h2>
+          <h2 className="text-lg font-semibold text-navy">Now live in Delhi NCR</h2>
           <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm">
             {locationPages.map((l) => (
               <li key={l.slug}>

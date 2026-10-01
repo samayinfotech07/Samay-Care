@@ -10,12 +10,10 @@ export type LocationPageConfig = {
 };
 
 // Per docs/samay-care-seo-metadata-keyword-guide.md §7 (Delhi NCR is the
-// launch market: Delhi, Gurugram/Gurgaon, Noida, Faridabad). Coverage
-// language says "launching first in" rather than the guide's literal
-// "currently serving" — the site is still pre-launch everywhere (see
-// docs/PENDING_INTEGRATIONS.md, docs/SAMAY_CARE_PHASE1_WEBSITE_V2.md), so
-// this keeps the geographic SEO focus the guide asks for without claiming
-// live operational coverage that doesn't exist yet.
+// launch market: Delhi, Gurugram/Gurgaon, Noida, Faridabad). Delhi NCR went
+// live 2026-10-01 — booking now redirects to care.samaycare.com (see
+// lib/care-booking.ts, components/site/CityContext.tsx). Every other city
+// still goes through the pre-launch interest form.
 export const locationPages: LocationPageConfig[] = [
   {
     slug: "delhi-ncr",
@@ -33,7 +31,7 @@ export const locationPages: LocationPageConfig[] = [
       "hospital visit support",
     ],
     intro:
-      "Samay Care is launching first in Delhi NCR — Delhi/New Delhi, Gurugram (Gurgaon), Noida and Faridabad. A CareBuddy can meet you at the hospital or accompany you from home, and help with the non-clinical side of the visit: registration, queues, navigation, diagnostics and pharmacy coordination, and keeping the family informed.",
+      "Samay Care is now live in Delhi NCR — Delhi/New Delhi, Gurugram (Gurgaon), Noida and Faridabad. A CareBuddy can meet you at the hospital or accompany you from home, and help with the non-clinical side of the visit: registration, queues, navigation, diagnostics and pharmacy coordination, and keeping the family informed.",
   },
   {
     slug: "delhi",
@@ -51,7 +49,7 @@ export const locationPages: LocationPageConfig[] = [
       "patient attendant Delhi",
     ],
     intro:
-      "Samay Care is launching first in Delhi, alongside the rest of Delhi NCR. A CareBuddy can meet a patient at the hospital or accompany them from home, helping with registration, queues, navigation, diagnostics and pharmacy coordination — while keeping family members informed along the way.",
+      "Samay Care is now live in Delhi, alongside the rest of Delhi NCR. A CareBuddy can meet a patient at the hospital or accompany them from home, helping with registration, queues, navigation, diagnostics and pharmacy coordination — while keeping family members informed along the way.",
   },
   {
     slug: "gurugram",
@@ -69,7 +67,7 @@ export const locationPages: LocationPageConfig[] = [
       "hospital visit assistance Gurgaon",
     ],
     intro:
-      "Samay Care is launching first in Gurugram (Gurgaon), as part of the initial Delhi NCR rollout. A CareBuddy can meet a patient at the hospital or accompany them from home, helping with registration, queues, navigation, diagnostics and pharmacy coordination — while keeping family members informed.",
+      "Samay Care is now live in Gurugram (Gurgaon), as part of the Delhi NCR launch. A CareBuddy can meet a patient at the hospital or accompany them from home, helping with registration, queues, navigation, diagnostics and pharmacy coordination — while keeping family members informed.",
   },
   {
     slug: "noida",
@@ -87,7 +85,7 @@ export const locationPages: LocationPageConfig[] = [
       "hospital visit assistance Noida",
     ],
     intro:
-      "Samay Care is launching first in Noida, as part of the initial Delhi NCR rollout. A CareBuddy can meet a patient at the hospital or accompany them from home, helping with registration, queues, navigation, diagnostics and pharmacy coordination — while keeping family members informed.",
+      "Samay Care is now live in Noida, as part of the Delhi NCR launch. A CareBuddy can meet a patient at the hospital or accompany them from home, helping with registration, queues, navigation, diagnostics and pharmacy coordination — while keeping family members informed.",
   },
   {
     slug: "faridabad",
@@ -105,6 +103,6 @@ export const locationPages: LocationPageConfig[] = [
       "hospital visit assistance Faridabad",
     ],
     intro:
-      "Samay Care is launching first in Faridabad, as part of the initial Delhi NCR rollout. A CareBuddy can meet a patient at the hospital or accompany them from home, helping with registration, queues, navigation, diagnostics and pharmacy coordination — while keeping family members informed.",
+      "Samay Care is now live in Faridabad, as part of the Delhi NCR launch. A CareBuddy can meet a patient at the hospital or accompany them from home, helping with registration, queues, navigation, diagnostics and pharmacy coordination — while keeping family members informed.",
   },
 ];

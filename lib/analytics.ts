@@ -15,6 +15,7 @@ export type AnalyticsEvent =
   | "prelaunch_form_success"
   | "prelaunch_form_error"
   | "city_selected"
+  | "book_now_click"
   | "relationship_selected"
   | "service_interest_selected"
   | "assistance_type_selected"

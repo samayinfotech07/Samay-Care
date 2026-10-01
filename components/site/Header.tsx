@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/site/Logo";
+import { CitySelector } from "@/components/site/CitySelector";
+import { CityAwareCta } from "@/components/site/CityAwareCta";
 import { navLinks } from "@/data/nav";
-import { track } from "@/lib/analytics";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -52,26 +52,24 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden xl:block">
-          <Button
-            href="/#prelaunch-form"
-            size="md"
-            onClick={() => track("hero_interest_click", { location: "header" })}
-          >
-            I&rsquo;m Interested
-          </Button>
+        <div className="hidden items-center gap-3 xl:flex">
+          <CitySelector />
+          <CityAwareCta location="header" size="md" />
         </div>
 
-        <button
-          type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-xl text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal xl:hidden"
-          aria-expanded={isMenuOpen}
-          aria-controls="mobile-menu"
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          onClick={() => setIsMenuOpen((open) => !open)}
-        >
-          {isMenuOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
-        </button>
+        <div className="flex items-center gap-2 xl:hidden">
+          <CitySelector />
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal xl:hidden"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            onClick={() => setIsMenuOpen((open) => !open)}
+          >
+            {isMenuOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
+          </button>
+        </div>
       </Container>
 
       {isMenuOpen ? (
@@ -87,16 +85,11 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
-            <Button
-              href="/#prelaunch-form"
+            <CityAwareCta
+              location="mobile_menu"
               className="mt-2 w-full"
-              onClick={() => {
-                setIsMenuOpen(false);
-                track("hero_interest_click", { location: "mobile_menu" });
-              }}
-            >
-              I&rsquo;m Interested
-            </Button>
+              onClick={() => setIsMenuOpen(false)}
+            />
           </Container>
         </div>
       ) : null}

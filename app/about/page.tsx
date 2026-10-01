@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { CityAwareCta } from "@/components/site/CityAwareCta";
 
 const socialImage = {
   url: "/images/samay-care-social-share.png",
@@ -70,9 +70,7 @@ export default function AboutPage() {
         </div>
 
         <div className="mt-8">
-          <Button href="/#prelaunch-form" size="lg">
-            I&rsquo;m Interested &rarr;
-          </Button>
+          <CityAwareCta location="about_page" />
         </div>
 
         <p className="mt-8 text-sm text-text-muted">

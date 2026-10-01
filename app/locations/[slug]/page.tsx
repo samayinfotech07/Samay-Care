@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { MapPin } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { CityAwareCta } from "@/components/site/CityAwareCta";
 import { locationPages } from "@/data/locationPages";
 import { servicePages } from "@/data/servicePages";
 
@@ -83,9 +83,7 @@ export default async function LocationPage({
         <p className="mt-4 text-base leading-7 text-text-muted">{location.intro}</p>
 
         <div className="mt-8">
-          <Button href="/#prelaunch-form" size="lg">
-            Request a CareBuddy &rarr;
-          </Button>
+          <CityAwareCta location="location_page" />
         </div>
 
         <div className="mt-12 border-t border-border pt-8">

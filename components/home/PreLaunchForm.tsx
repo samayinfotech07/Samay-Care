@@ -9,6 +9,8 @@ import { Select } from "@/components/ui/Select";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { Button } from "@/components/ui/Button";
 import { PreLaunchVisual } from "@/components/home/PreLaunchVisual";
+import { CityAwareCta } from "@/components/site/CityAwareCta";
+import { useCity } from "@/components/site/CityContext";
 import { assistanceTypeOptions } from "@/data/assistanceTypes";
 import { relationshipOptions } from "@/data/relationshipOptions";
 import { validatePreLaunchLead, type FieldErrors } from "@/lib/validation";
@@ -22,6 +24,13 @@ const benefits = [
   "Get early access when available",
   "Help us design a better CareBuddy experience",
   "Receive only important launch updates",
+];
+
+const liveBenefits = [
+  "Trained & verified CareBuddies",
+  "Transparent pricing shown before you book",
+  "Meet at Hospital or Accompany from Home",
+  "Non-clinical assistance through your visit",
 ];
 
 type FormState = {
@@ -45,6 +54,7 @@ const initialState: FormState = {
 };
 
 export function PreLaunchForm() {
+  const { city } = useCity();
   const [form, setForm] = useState<FormState>(initialState);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -127,6 +137,51 @@ export function PreLaunchForm() {
       setSubmitError(result.error);
       track("prelaunch_form_error", { reason: "submit" });
     }
+  }
+
+  if (city.isLive) {
+    return (
+      <section id="prelaunch-form" className="bg-teal-soft py-10 lg:py-14">
+        <Container>
+          <div className="grid gap-8 lg:grid-cols-[1fr_1fr_0.85fr] lg:gap-10">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wide text-teal">Now Live in {city.label}</p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-navy sm:text-4xl">
+                Book a CareBuddy Today
+              </h2>
+              <p className="mt-3 max-w-md text-base leading-7 text-text-muted">
+                Choose your service, pick a time, and we&rsquo;ll take it from there — booking is handled
+                on our booking platform.
+              </p>
+
+              <ul className="mt-5 space-y-2">
+                {liveBenefits.map((benefit) => (
+                  <li key={benefit} className="flex items-start gap-3 text-sm leading-6 text-text">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal" aria-hidden="true" />
+                    {benefit}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="flex flex-col items-center justify-center rounded-3xl border border-border bg-white p-8 text-center shadow-[0_20px_60px_rgba(16,43,58,0.08)]">
+              <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-teal-light">
+                <CheckCircle2 className="h-7 w-7 text-teal" aria-hidden="true" />
+              </span>
+              <h3 className="mt-5 text-xl font-semibold text-navy">Ready to get started?</h3>
+              <p className="mt-2 max-w-sm text-sm leading-6 text-text-muted">
+                Book a CareBuddy directly through our booking platform for your hospital visit.
+              </p>
+              <div className="mt-6">
+                <CityAwareCta location="prelaunch_section" />
+              </div>
+            </div>
+
+            <PreLaunchVisual />
+          </div>
+        </Container>
+      </section>
+    );
   }
 
   return (

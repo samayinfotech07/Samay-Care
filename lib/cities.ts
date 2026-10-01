@@ -1,22 +1,30 @@
 /**
- * Scaffold for future city-specific landing pages (e.g. /mumbai). Phase 1
- * ships only the homepage — this config exists so a future
- * app/[citySlug]/page.tsx can render city variants without duplicating the
- * page structure. Not wired into any route yet. Slugs match the flat
- * per-city routes suggested in docs/SAMAY_CARE_PHASE1_WEBSITE_V2.md §34.
+ * Drives the header city selector and every city-aware CTA (CityAwareCta,
+ * Hero, FinalCTA, BookingModes, CareBuddyServices, PreLaunchForm). Delhi NCR
+ * is the only live city — booking there redirects to the real platform at
+ * care.samaycare.com (see lib/care-booking.ts). Every other city still goes
+ * through the pre-launch interest form while that city isn't live.
  */
-export type CityConfig = {
+export type CityOption = {
   slug: string;
-  city: string;
-  launchStatus: "coming-soon" | "planned";
-  headline: string;
+  label: string;
+  isLive: boolean;
 };
 
-export const cityConfigs: CityConfig[] = [
-  { slug: "delhi", city: "Delhi", launchStatus: "coming-soon", headline: "Samay Care is coming to Delhi" },
-  { slug: "mumbai", city: "Mumbai", launchStatus: "coming-soon", headline: "Samay Care is coming to Mumbai" },
-  { slug: "bengaluru", city: "Bengaluru", launchStatus: "coming-soon", headline: "Samay Care is coming to Bengaluru" },
-  { slug: "hyderabad", city: "Hyderabad", launchStatus: "planned", headline: "Samay Care is coming to Hyderabad" },
-  { slug: "pune", city: "Pune", launchStatus: "planned", headline: "Samay Care is coming to Pune" },
-  { slug: "chennai", city: "Chennai", launchStatus: "planned", headline: "Samay Care is coming to Chennai" },
+export const cityOptions: CityOption[] = [
+  { slug: "delhi-ncr", label: "Delhi NCR", isLive: true },
+  { slug: "mumbai", label: "Mumbai", isLive: false },
+  { slug: "bengaluru", label: "Bengaluru", isLive: false },
+  { slug: "hyderabad", label: "Hyderabad", isLive: false },
+  { slug: "chennai", label: "Chennai", isLive: false },
+  { slug: "pune", label: "Pune", isLive: false },
+  { slug: "kolkata", label: "Kolkata", isLive: false },
+  { slug: "ahmedabad", label: "Ahmedabad", isLive: false },
+  { slug: "other", label: "Other city", isLive: false },
 ];
+
+export const DEFAULT_CITY_SLUG = "delhi-ncr";
+
+export function getCityOption(slug: string): CityOption {
+  return cityOptions.find((c) => c.slug === slug) ?? cityOptions[0];
+}

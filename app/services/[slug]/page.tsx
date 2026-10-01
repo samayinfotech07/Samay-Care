@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { CityAwareCta } from "@/components/site/CityAwareCta";
 import { servicePages } from "@/data/servicePages";
 
 const socialImage = {
@@ -97,9 +97,7 @@ export default async function ServicePage({
         </div>
 
         <div className="mt-8">
-          <Button href="/#prelaunch-form" size="lg">
-            Request This Assistance &rarr;
-          </Button>
+          <CityAwareCta location="service_page" notLiveLabel="Request This Assistance" />
         </div>
 
         <div className="mt-12 border-t border-border pt-8">
@@ -114,7 +112,7 @@ export default async function ServicePage({
             ))}
           </ul>
           <p className="mt-4 text-sm text-text-muted">
-            Launching first in{" "}
+            Now live in{" "}
             <Link href="/locations/delhi-ncr" className="font-medium text-teal hover:text-teal-dark">
               Delhi NCR
             </Link>

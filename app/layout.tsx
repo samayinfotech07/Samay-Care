@@ -4,6 +4,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { GoogleAnalytics } from "@/components/site/GoogleAnalytics";
 import { GoogleAnalyticsPageview } from "@/components/site/GoogleAnalyticsPageview";
+import { CityProvider } from "@/components/site/CityContext";
 import "./globals.css";
 
 const inter = Inter({
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "Samay Care",
     title: "Samay Care — Making Healthcare Convenient",
-    description: "Your loved one is not alone. Neither are you — meet CareBuddy, coming soon to your city.",
+    description: "Your loved one is not alone. Neither are you — meet CareBuddy, now live in Delhi NCR.",
     images: [
       {
         url: "/images/samay-care-social-share.png",
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Samay Care — Making Healthcare Convenient",
-    description: "Your loved one is not alone. Neither are you — meet CareBuddy, coming soon to your city.",
+    description: "Your loved one is not alone. Neither are you — meet CareBuddy, now live in Delhi NCR.",
     images: [
       {
         url: "/images/samay-care-social-share.png",
@@ -88,17 +89,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-teal focus:px-4 focus:py-2 focus:text-white"
-        >
-          Skip to content
-        </a>
-        <Header />
-        <main id="main-content" className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        <CityProvider>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-teal focus:px-4 focus:py-2 focus:text-white"
+          >
+            Skip to content
+          </a>
+          <Header />
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </CityProvider>
       </body>
     </html>
   );

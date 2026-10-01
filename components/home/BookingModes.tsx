@@ -3,8 +3,10 @@
 import { Building2, Home } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { useCity } from "@/components/site/CityContext";
 import { bookingModes } from "@/data/bookingModes";
 import { track } from "@/lib/analytics";
+import { CARE_BOOKING_URL } from "@/lib/care-booking";
 import { PRESELECT_ASSISTANCE_EVENT } from "@/lib/events";
 import type { AssistanceType } from "@/lib/types";
 
@@ -16,6 +18,8 @@ const modeAssistance: Record<string, AssistanceType> = {
 };
 
 export function BookingModes() {
+  const { city } = useCity();
+
   return (
     <section className="py-10 lg:py-14">
       <Container>
@@ -31,6 +35,11 @@ export function BookingModes() {
                 className="rounded-2xl border border-border bg-white p-6 text-left transition-colors hover:bg-teal-light/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
                 onClick={() => {
                   track(modeEvent[mode.id as keyof typeof modeEvent]);
+                  if (city.isLive) {
+                    track("book_now_click", { location: "booking_modes", city: city.slug });
+                    window.location.href = CARE_BOOKING_URL;
+                    return;
+                  }
                   window.dispatchEvent(
                     new CustomEvent(PRESELECT_ASSISTANCE_EVENT, {
                       detail: { assistanceType: modeAssistance[mode.id] },
@@ -44,7 +53,9 @@ export function BookingModes() {
                 </span>
                 <h3 className="mt-4 text-lg font-semibold text-navy">{mode.title}</h3>
                 <p className="mt-1.5 text-sm leading-6 text-text-muted">{mode.description}</p>
-                <span className="mt-3 inline-block text-sm font-medium text-teal">Request this &rarr;</span>
+                <span className="mt-3 inline-block text-sm font-medium text-teal">
+                  {city.isLive ? "Book this" : "Request this"} &rarr;
+                </span>
               </button>
             );
           })}

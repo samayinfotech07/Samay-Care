@@ -2,24 +2,34 @@
 
 import { Clock, Heart, PlayCircle, Rocket, ShieldCheck, Users } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 import { BookingModeCard } from "@/components/home/BookingModeCard";
 import { HeroVisual } from "@/components/home/HeroVisual";
+import { CityAwareCta } from "@/components/site/CityAwareCta";
+import { useCity } from "@/components/site/CityContext";
 import { bookingModes, heroTrustIndicators } from "@/data/bookingModes";
 import { track } from "@/lib/analytics";
 
 const trustIcons = { users: Users, shieldCheck: ShieldCheck, heart: Heart, clock: Clock };
 
 export function Hero() {
+  const { city } = useCity();
+
   return (
     <section id="top" className="relative overflow-hidden bg-white pt-6 pb-10 lg:pt-8 lg:pb-12">
       <Container>
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-12">
           <div className="fade-up">
-            <span className="inline-flex items-center gap-2 rounded-full border border-teal/25 bg-teal-light px-4 py-1.5 text-sm font-semibold text-teal-dark">
-              <Rocket className="h-4 w-4" aria-hidden="true" />
-              Coming Soon — Launching City by City
-            </span>
+            {city.isLive ? (
+              <span className="inline-flex items-center gap-2 rounded-full border border-teal/25 bg-teal-light px-4 py-1.5 text-sm font-semibold text-teal-dark">
+                <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+                Now Live in {city.label}
+              </span>
+            ) : (
+              <span className="inline-flex items-center gap-2 rounded-full border border-teal/25 bg-teal-light px-4 py-1.5 text-sm font-semibold text-teal-dark">
+                <Rocket className="h-4 w-4" aria-hidden="true" />
+                Coming Soon to {city.label}
+              </span>
+            )}
 
             <h1 className="mt-4 text-4xl font-semibold leading-[1.15] tracking-tight text-navy sm:text-5xl lg:text-[42px] xl:text-[48px]">
               Your loved one is not alone.
@@ -39,13 +49,7 @@ export function Hero() {
             </div>
 
             <div className="mt-5 flex flex-wrap items-center gap-x-8 gap-y-4">
-              <Button
-                href="#prelaunch-form"
-                size="lg"
-                onClick={() => track("hero_interest_click", { location: "hero" })}
-              >
-                I&rsquo;m Interested &rarr;
-              </Button>
+              <CityAwareCta location="hero" />
               <a
                 href="#how-it-works"
                 onClick={() => track("how_it_works_click", { location: "hero" })}

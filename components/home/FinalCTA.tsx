@@ -2,9 +2,13 @@
 
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { CityAwareCta } from "@/components/site/CityAwareCta";
+import { useCity } from "@/components/site/CityContext";
 import { track } from "@/lib/analytics";
 
 export function FinalCTA() {
+  const { city } = useCity();
+
   return (
     <section className="bg-teal-dark py-14 lg:py-16">
       <Container className="text-center">
@@ -19,22 +23,26 @@ export function FinalCTA() {
         </p>
 
         <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Button
-            href="#prelaunch-form"
-            variant="inverse"
-            size="lg"
-            onClick={() => track("hero_interest_click", { location: "final_cta" })}
-          >
-            I&rsquo;m Interested &rarr;
-          </Button>
-          <Button
-            href="#prelaunch-form"
-            variant="ghost-inverse"
-            size="lg"
-            onClick={() => track("hero_request_click", { location: "final_cta" })}
-          >
-            Request Assistance
-          </Button>
+          <CityAwareCta location="final_cta" variant="inverse" />
+          {city.isLive ? (
+            <Button
+              href="#how-it-works"
+              variant="ghost-inverse"
+              size="lg"
+              onClick={() => track("how_it_works_click", { location: "final_cta" })}
+            >
+              See How It Works
+            </Button>
+          ) : (
+            <Button
+              href="#prelaunch-form"
+              variant="ghost-inverse"
+              size="lg"
+              onClick={() => track("hero_request_click", { location: "final_cta" })}
+            >
+              Request Assistance
+            </Button>
+          )}
         </div>
       </Container>
     </section>

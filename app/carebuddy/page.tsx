@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Heart, MapPin, MessageCircle, ShieldCheck } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { CityAwareCta } from "@/components/site/CityAwareCta";
 import { servicePages } from "@/data/servicePages";
 
 const socialImage = {
@@ -103,9 +103,7 @@ export default function CareBuddyPage() {
         </div>
 
         <div className="mt-8">
-          <Button href="/#prelaunch-form" size="lg">
-            Request a CareBuddy &rarr;
-          </Button>
+          <CityAwareCta location="carebuddy_page" notLiveLabel="Request a CareBuddy" />
         </div>
 
         <div className="mt-12 border-t border-border pt-8">

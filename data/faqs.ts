@@ -11,11 +11,11 @@ export const faqs = [
   },
   {
     question: "Can a CareBuddy meet me at the hospital?",
-    answer: "Yes. One service mode is Meet at Hospital, subject to launch availability.",
+    answer: "Yes. Meet at Hospital is one of the two booking modes, live now in Delhi NCR.",
   },
   {
     question: "Can a CareBuddy accompany me from home?",
-    answer: "Yes. Accompany from Home is part of the CareBuddy service model, subject to launch availability.",
+    answer: "Yes. Accompany from Home is the other booking mode, live now in Delhi NCR.",
   },
   {
     question: "Is a CareBuddy a doctor or nurse?",
@@ -29,12 +29,13 @@ export const faqs = [
   },
   {
     question: "Is Samay Care available in my city?",
-    answer: "Samay Care is launching city by city. Visitors can submit their interest to help prioritize launches.",
+    answer:
+      "Samay Care is live in Delhi NCR. For other cities, visitors can submit their interest to help prioritize where we launch next.",
   },
   {
     question: "Which cities does Samay Care currently serve?",
     answer:
-      "Samay Care is launching first in Delhi NCR — Delhi, Gurugram (Gurgaon), Noida and Faridabad. Requests are welcome from other Indian cities too, and help us decide where to launch next.",
+      "Samay Care is now live in Delhi NCR — Delhi, Gurugram (Gurgaon), Noida and Faridabad. Requests are welcome from other Indian cities too, and help us decide where to launch next.",
   },
   {
     question: "Can a CareBuddy help with hospital registration and queues?",
@@ -49,12 +50,12 @@ export const faqs = [
   {
     question: "How do I book a CareBuddy?",
     answer:
-      "Samay Care is in pre-launch. You can share your interest and city through our request form, and we'll be in touch as service becomes available in your area.",
+      "In Delhi NCR, you can book directly through our booking platform at care.samaycare.com — choose a service, pick a time, and a CareBuddy is assigned to your visit. In other cities, share your interest and city through our request form and we'll be in touch as service becomes available in your area.",
   },
   {
     question: "How much does a CareBuddy cost?",
     answer:
-      "Pricing hasn't been published yet — it will be shared as Samay Care launches. Submitting your interest doesn't commit you to anything.",
+      "In Delhi NCR, pricing starts around ₹799 for an OPD visit and ₹1,499 for IPD/admission support (exclusive of GST) — exact pricing is always shown before you confirm a booking. In other cities, pricing will be shared as Samay Care launches there.",
   },
   {
     question: "Can I request a CareBuddy for someone else, like a parent?",
