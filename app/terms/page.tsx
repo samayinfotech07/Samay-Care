@@ -103,9 +103,12 @@ export default function TermsPage() {
             <h2 className="text-xl font-semibold text-navy">5. Cancellations and refunds</h2>
             <p className="mt-2">
               Cancelling a booking may incur a cancellation charge depending on how much notice you
-              give before your scheduled visit; our current Refund & Cancellation Policy is shown to
-              you on the booking platform before you confirm. The following always applies,
-              regardless of notice:
+              give before your scheduled visit — see our{" "}
+              <Link href="/refund-policy" className="font-medium text-teal hover:text-teal-dark">
+                Refund & Cancellation Policy
+              </Link>{" "}
+              for the current tiers, also shown to you on the booking platform before you confirm.
+              The following always applies, regardless of notice:
             </p>
             <ul className="mt-2 list-disc space-y-1.5 pl-5">
               <li>

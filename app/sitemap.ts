@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/privacy",
     "/terms",
     "/contact",
+    "/refund-policy",
     "/poll",
     "/about",
     "/carebuddy",

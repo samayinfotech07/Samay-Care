@@ -39,6 +39,7 @@ export const footerColumns = [
       { label: "Contact Us", href: "/contact" },
       { label: "Terms & Conditions", href: "/terms" },
       { label: "Privacy Policy", href: "/privacy" },
+      { label: "Refund & Cancellation Policy", href: "/refund-policy" },
     ],
   },
 ] as const;
